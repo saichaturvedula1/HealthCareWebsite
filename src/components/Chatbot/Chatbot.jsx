@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { Button, Container, ListGroup, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { BsChatDots } from 'react-icons/bs';
+import { Button, Container, ListGroup} from 'react-bootstrap';
 import { AiOutlineClose } from 'react-icons/ai';
 import './Chatbot.css';
 
