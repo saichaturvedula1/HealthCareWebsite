@@ -1,0 +1,15 @@
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9; /* Light grey background */
+  color: #333; /* Dark grey text */
+  font-family: 'Arial', sans-serif; /* Default font */
+  height: 100%;
+}

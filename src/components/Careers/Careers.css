@@ -1,0 +1,138 @@
+/* Basic Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f0f2f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+  color: #555;
+}
+
+.btn-primary {
+  background-color: #0056b3;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #004494;
+}
+
+.form-control:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 0 0.2rem rgba(0, 86, 179, 0.25);
+}
+
+/* Error Message Styles */
+.is-invalid {
+  border-color: #dc3545;
+}
+
+.form-control-feedback {
+  color: #dc3545;
+}
+
+@media (max-width: 768px) {
+    .container {
+      padding: 15px;
+    }
+  
+    .btn-primary {
+      padding: 8px 15px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .form-label {
+      font-size: 14px;
+    }
+  
+    .form-control {
+      font-size: 14px;
+    }
+  }
+  
+
+  /* Assuming the className 'career-page' is added to the top-level container */
+
+.career-page .job-openings-section .list-group {
+    border: 0 !important;
+    border-radius: 0.5rem !important;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .career-page .job-openings-section .list-group-item {
+    border: 0 !important;
+    padding: 1.25rem 1.5rem !important;
+    background-color: #fafafa !important; /* Light background for each item */
+    color: #333 !important; /* Dark text for contrast */
+    border-bottom: 1px solid #e1e1e1 !important; /* subtle separation between items */
+  }
+  
+  /* Last child border fix */
+  .career-page .job-openings-section .list-group-item:last-child {
+    border-bottom: 0 !important;
+  }
+  
+  .career-page .job-openings-section .card {
+    background: none !important;
+    border: 0 !important;
+  }
+  
+  .career-page .job-openings-section .card-body {
+    padding: 0 !important; /* Remove padding as it's handled by list-group-item */
+  }
+  
+  .career-page .job-openings-section .card-title {
+    font-size: 1.25rem !important;
+    color: #0056b3 !important; /* A color that suits your brand */
+  }
+  
+  .career-page .job-openings-section .card-text {
+    font-size: 1rem !important;
+    color: #666 !important; /* Subtle color for text */
+  }
+  
+  /* Hover effect for each job listing */
+  .career-page .job-openings-section .list-group-item:hover {
+    background-color: #eef4fa !important; /* A light blue that suits your brand on hover */
+    cursor: pointer;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .career-page .job-openings-section .list-group-item {
+      padding: 1rem !important; /* Adjust padding for smaller screens */
+    }
+  }
+  

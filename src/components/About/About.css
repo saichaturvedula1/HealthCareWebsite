@@ -1,0 +1,157 @@
+/* AboutUs.css */
+
+.about-us-page {
+    max-width: 1200px;
+    margin: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex; /* Add this line */
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Space between content and image */
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+  }
+  
+  .about-us-page .content-wrapper {
+    flex: 1; /* Allows the content wrapper to grow */
+    max-width: 48%; /* Adjusts the maximum width to allow space between text and image */
+  }
+
+  .about-us-page .image-wrapper {
+    flex: 1; /* Allows the image wrapper to grow */
+    max-width: 48%; /* Adjusts the maximum width to balance with the text content */
+  }
+  
+  .about-us-page h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #333; /* Replace with the exact color code from the provided layout */
+  }
+  
+  .about-us-page p {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #666; /* Replace with the exact color code from the provided layout */
+    margin-bottom: 30px;
+  }
+  
+  
+  /* For image alignment and responsiveness */
+  .about-us-page .img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px; /* Assuming there is a border radius in the provided image */
+  }
+  
+  /* Custom styles for mobile responsiveness */
+  @media (max-width: 768px) {
+    .about-us-page {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
+    .about-us-page .content-wrapper,
+  .about-us-page .image-wrapper {
+    max-width: 100%; /* Allows content and image to fill the container on small screens */
+  }
+  
+    .about-us-page h2 {
+      font-size: 2.5rem;
+    }
+
+  }
+
+
+/* New styles for the Mission section */
+.mission-section {
+    background-color: #5bbad5; /* Replace with the exact color from the layout */
+    border-radius: 25px; /* Assuming there is a border radius in the provided layout */
+    color: #ffffff; /* Replace with the exact text color from the layout */
+    margin: 50px 0; /* Adjust as per layout spacing */
+  }
+  
+  .mission-section h2 {
+    font-size: 3rem; /* Adjust as per layout */
+    margin-bottom: 20px;
+  }
+  
+  .mission-section p {
+    font-size: 1.25rem; /* Adjust as per layout */
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  
+  .mission-button {
+    background-color: transparent; /* Replace with the exact button color from the layout */
+    border: 2px solid #ffffff; /* Replace with the exact border color from the layout */
+    border-radius: 30px; /* Adjust as per the layout's button border-radius */
+    color: #ffffff;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .mission-button:hover {
+    background-color: #ffffff; /* Button hover effect */
+    color: #5bbad5; /* Text color on hover, replace with the layout color if different */
+  }
+  
+  /* values section */
+  
+  .values-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .values-image img {
+    width: 85%;
+  }
+  
+  .values-content {
+    width: 50%; /* Adjust the width as needed */
+    padding-left: 20px; /* Adjust the padding as needed */
+  }
+  
+  .value-card {
+    background: #f9f9f9; /* This should match the background of your cards */
+    margin-bottom: 10px; /* Adjust the margin as needed */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* This adds a subtle shadow to your cards */
+  }
+  
+  .value-card:not(:last-child) {
+    margin-bottom: 20px; /* Adjust space between cards */
+  }
+  
+ /* Add this general style for all icons in value cards */
+
+  .value-card h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #333; /* Replace with the exact color code from the provided layout */
+  }
+  
+  .value-card p {
+    color: #666; /* Replace with the exact color code from the provided layout */
+  }
+  
+  /* Add media queries for responsiveness */
+  @media (max-width: 768px) {
+    .values-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .values-image img, .values-content {
+      width: 100%;
+    }
+  
+    .values-content {
+      padding-left: 0;
+    }
+  }
+  

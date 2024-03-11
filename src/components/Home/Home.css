@@ -1,0 +1,49 @@
+/* Home.css */
+.Home {
+  text-align: center;
+  margin:10px;
+}
+
+.Home-header {
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  font-size: calc(10px + 2vmin);
+}
+
+.video-container video {
+  max-height: 800px;
+}
+
+.insurance-heading {
+  color: #007bff; /* Bootstrap primary color for consistency */
+  margin-bottom: 30px;
+  font-size: 1.75rem;
+}
+
+.insurance-card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border: none; /* Removes default card border */
+}
+
+.insurance-card .card-body {
+  padding: 2rem;
+}
+
+.insurance-card .card-title {
+  color: #17a2b8; /* Bootstrap info color for a fresh look */
+  font-weight: bold;
+}
+
+.insurance-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Responsive video and cards */
+@media (max-width: 768px) {
+  .video-container video {
+    max-height: 200px;
+  }
+}
+

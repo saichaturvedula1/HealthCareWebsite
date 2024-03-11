@@ -1,0 +1,94 @@
+/* Base container for chatbot, with a modern look */
+.chatbot-container {
+    position: fixed; /* Fixed position to float over content */
+    bottom: 20px; /* Positioned at the bottom right corner */
+    right: 20px;
+    width: 350px; /* Standard chatbox width */
+    max-width: 80%; /* Ensure responsiveness on small devices */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Hide overflow for clean rounded corners */
+    transition: transform 0.3s ease; /* Smooth opening animation */
+  }
+  
+  /* Header styles */
+  .chatbot-header {
+    padding: 10px 20px;
+    background-color: #007bff; /* Primary color for header */
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    border-bottom: 1px solid #006fe6; /* Slightly darker border for depth */
+  }
+  
+  /* Styles for the message area */
+  .messages {
+    flex-grow: 1; /* Take available space */
+    padding: 10px;
+    overflow-y: auto; /* Scrollable content */
+    background: #f0f0f0; /* Light background for contrast */
+  }
+  
+  /* Individual message styling */
+  .message {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 18px; /* Bubble-like appearance */
+  }
+  
+  /* Styling for messages from the user */
+  .message-user {
+    background-color: #007bff;
+    color: white;
+    text-align: right;
+    margin-left: 50px; /* Indent for visual separation */
+  }
+  
+  /* Styling for messages from the chatbot */
+  .message-chatbot {
+    background-color: #e9e9eb;
+    color: black;
+    text-align: left;
+    margin-right: 50px; /* Indent for visual separation */
+  }
+  
+  /* Input area styling */
+  .input-area {
+    display: flex;
+    border-top: 1px solid #ccc; /* Separator from messages */
+  }
+  
+  /* Input field styling */
+  .input-field {
+    flex-grow: 1; /* Allow input to fill space */
+    border: none;
+    padding: 10px;
+    outline: none; /* Remove focus outline */
+  }
+  
+  /* Send button styling */
+  .send-button {
+    background-color: #007bff; /* Match header color */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  .send-button:hover {
+    background-color: #0056b3; /* Darken on hover for feedback */
+  }
+  
+  /* Ensure the chatbot is hidden initially and slides up on load */
+  .chatbot-container {
+    transform: translateY(100%);
+  }
+  
+  .chatbot-container.active {
+    transform: translateY(0); /* Slide into view when active */
+  }
+  
