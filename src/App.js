@@ -7,6 +7,7 @@ import Contact from './components/Contact/Contact';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Services from './components/Services/Services';
+import Chatbot from './components/Chatbot/Chatbot';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
@@ -49,6 +50,8 @@ function App() {
             </Routes>
           </div>
           <Footer/>
+          {/* Chatbot Component Added Here */}
+        <Chatbot footerHeight={footerHeight} />
         </div>
       </Router>
     );

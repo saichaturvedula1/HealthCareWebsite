@@ -1,94 +1,186 @@
-/* Base container for chatbot, with a modern look */
+.question-list {
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.question-list button {
+  color: #007bff;
+  text-align: left;
+  padding: 5px;
+  margin: 5px 0;
+  cursor: pointer;
+  display: block;
+}
+
+.message.question {
+  background-color: #d1eaff; /* Updated color for better distinction */
+  color: #0056b3; /* Color adjusted for readability on the new background */
+  cursor: pointer;
+  border-left: 3px solid #0056b3; /* Updated border color to match the text */
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 18px;
+}
+
+.message.question:hover {
+  background-color: #b0d4ff; /* A slightly darker hover effect for better interaction */
+}
+
 .chatbot-container {
-    position: fixed; /* Fixed position to float over content */
-    bottom: 20px; /* Positioned at the bottom right corner */
-    right: 20px;
-    width: 350px; /* Standard chatbox width */
-    max-width: 80%; /* Ensure responsiveness on small devices */
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Soft shadow for depth */
-    display: flex;
-    flex-direction: column;
-    overflow: hidden; /* Hide overflow for clean rounded corners */
-    transition: transform 0.3s ease; /* Smooth opening animation */
-  }
-  
-  /* Header styles */
-  .chatbot-header {
-    padding: 10px 20px;
-    background-color: #007bff; /* Primary color for header */
-    color: #ffffff;
-    text-align: center;
-    font-weight: bold;
-    font-size: 16px;
-    border-bottom: 1px solid #006fe6; /* Slightly darker border for depth */
-  }
-  
-  /* Styles for the message area */
-  .messages {
-    flex-grow: 1; /* Take available space */
-    padding: 10px;
-    overflow-y: auto; /* Scrollable content */
-    background: #f0f0f0; /* Light background for contrast */
-  }
-  
-  /* Individual message styling */
-  .message {
-    margin-bottom: 10px;
-    padding: 8px;
-    border-radius: 18px; /* Bubble-like appearance */
-  }
-  
-  /* Styling for messages from the user */
-  .message-user {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  max-width: 350px; 
+  width: 100%; 
+  max-height: 90%; 
+  z-index: 1000;
+  transition: all 0.3s;
+}
+
+.message-list {
+  overflow-y: auto;
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.message {
+  list-style-type: none;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 20px; /* More pronounced roundness */
+  max-width: 75%;
+}
+
+.message.user {
+  background-color: #5b7db1;
+  color: white;
+  margin-left: auto;
+  text-align: right;
+  word-wrap: break-word;
+}
+
+.message.bot {
+  background-color: #e1e1e1;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.chat-toggle-btn {
+  background-color: darkblue;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.predefined-questions {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.question-button {
+  margin: 5px 0;
+  border-radius: 20px;
+  color: #5b7db1;
+  border: 1px solid #5b7db1;
+  padding: 5px 15px;
+  transition: background-color 0.2s, color 0.2s;
+  white-space: normal; /* Allows text within the button to wrap */
+  text-align: left; /* Aligns text to the left */
+}
+
+.question-button:hover {
+  background-color: #5b7db1;
+  color: white;
+}
+
+.chat-interface {
+  width: 100%;
+  height: auto; /* Height is auto to accommodate content */
+  max-height: calc(100vh - 100px); /* Ensures the chat doesn't exceed the viewport height */
+  background-color: #ffffff;
+  border-radius: 18px; /* Consistent border-radius */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.chat-header {
+  /* background-color: #007bff;
+  color: white;
+  padding: 12px 15px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 18px; 
+  border-top-right-radius: 18px; 
+  font-size: 18px;  */
+
     background-color: #007bff;
     color: white;
-    text-align: right;
-    margin-left: 50px; /* Indent for visual separation */
-  }
-  
-  /* Styling for messages from the chatbot */
-  .message-chatbot {
-    background-color: #e9e9eb;
-    color: black;
-    text-align: left;
-    margin-right: 50px; /* Indent for visual separation */
-  }
-  
-  /* Input area styling */
-  .input-area {
+    padding: 0.75rem 1rem; /* Consistent padding */
     display: flex;
-    border-top: 1px solid #ccc; /* Separator from messages */
-  }
-  
-  /* Input field styling */
-  .input-field {
-    flex-grow: 1; /* Allow input to fill space */
-    border: none;
-    padding: 10px;
-    outline: none; /* Remove focus outline */
-  }
-  
-  /* Send button styling */
-  .send-button {
-    background-color: #007bff; /* Match header color */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-  }
-  
-  .send-button:hover {
-    background-color: #0056b3; /* Darken on hover for feedback */
-  }
-  
-  /* Ensure the chatbot is hidden initially and slides up on load */
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    font-size: 1rem;
+    position: relative; /* Relative position without offset */
+}
+
+.close-icon {
+  cursor: pointer;
+  align-self: start; /* Aligns the icon to the top */
+  padding: 2px; /* Makes it easier to click */
+  margin: -2px; /* Adjust margin to counteract padding and align the icon */
+  color: white;
+  font-size: 24px;
+}
+
+/* Ensure buttons are styled appropriately */
+.question-button {
+  /* ... other styles ... */
+  margin-bottom: 10px; /* Add bottom margin for spacing */
+  display: inline-block; /* Aligns buttons to behave like inline elements */
+}
+
+/* Add a hover effect for the buttons */
+.question-button:hover {
+  background-color: #0056b3;
+  color: white;
+  border-color: #0056b3;
+}
+
+
+@media (max-width: 400px) {
   .chatbot-container {
-    transform: translateY(100%);
+    right: 10px;
+    bottom: 10px;
+    max-width: calc(100% - 20px); /* Subtracts margin from the total width */
   }
-  
-  .chatbot-container.active {
-    transform: translateY(0); /* Slide into view when active */
+
+  .chat-interface {
+    max-height: calc(100vh - 20px); /* Adjusts height on very small screens */
   }
-  
+
+  /* .chat-header, .close-icon {
+    padding: 8px 10px; 
+  } */
+
+  .message-list {
+    padding: 5px; /* Smaller padding within the message list */
+  }
+
+  .chat-header {
+    padding: 0.5rem; /* Even smaller padding on very small screens */
+  }
+
+}
+

@@ -1,61 +1,99 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState, useEffect} from 'react';
+import { Button, Container, ListGroup, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { BsChatDots } from 'react-icons/bs';
+import { AiOutlineClose } from 'react-icons/ai';
 import './Chatbot.css';
+
+const defaultQuestions = [
+  { id: 1, question: "Operating Hours", answer: "We are open from 8 AM to 9 PM every day." },
+  { id: 2, question: "Book Appointment", answer: "You can book an appointment through our website or call us directly at (123) 456-7890." },
+  { id: 3, question: "Virtual Consultations", answer: "Yes, we offer virtual consultations. You can schedule one via our portal or contact us for more information." },
+];
 
 
 const Chatbot = () => {
-  const [userQuery, setUserQuery] = useState('');
-  const [conversation, setConversation] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const defaultGreeting = { text: "Hello! 👋 I'm here to help you with your healthcare questions. Choose one from below or type your question.", sender: 'bot' };
+  const [messages, setMessages] = useState([defaultGreeting]);
 
-  const [isOpen, setIsOpen] = useState(false); // State to track if chat window is open
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const toggleChatWindow = () => {
-    setIsOpen(!isOpen); // Toggle the chat window open/close
+  const handleScroll = () => {
+    const chatbot = document.querySelector('.chatbot-container');
+    if (window.scrollY > 150) {
+      chatbot.style.position = 'fixed';
+      chatbot.style.bottom = '20px';
+    } else {
+      chatbot.style.position = 'absolute';
+      chatbot.style.bottom = 'initial';
+    }
   };
 
-  const generalQueries = {
-    "What are your opening hours?": "We are open from 9 AM to 5 PM, Monday to Friday.",
-    "How can I book an appointment?": "You can book an appointment through our website or by calling us at (123) 456-7890.",
-    // You can add more predefined queries and answers here
+  const resetChat = () => {
+    setIsOpen(false);
+    setMessages([defaultGreeting]);
   };
 
-  const handleInputChange = (event) => {
-    setUserQuery(event.target.value);
+  const handleQuestionSelect = (questionId) => {
+    const question = defaultQuestions.find(q => q.id === questionId);
+    // Simulate user selecting a question
+    addMessage({ text: question.question, sender: 'user' });
+    // Provide the corresponding answer from the array
+    addMessage({ text: question.answer, sender: 'bot' });
   };
 
-  const handleSubmit = () => {
-    const response = generalQueries[userQuery] || "I'm not sure how to answer that. Please contact us at info@healthcare.com for more information.";
-    setConversation(conversation.concat({ question: userQuery, answer: response }));
-    setUserQuery('');
+  const addMessage = (message) => {
+    setMessages((prevMessages) => [...prevMessages, message]);
   };
 
-  if (!isVisible) return null;
+  const chatButton = (
+    <Button onClick={() => setIsOpen(true)} className="chat-toggle-btn">
+      Chat with us <BsChatDots />
+    </Button>
+  );
+
+  const closeButton = (
+    <OverlayTrigger
+      placement="left"
+      overlay={<Tooltip id="close-tooltip">Close Chat</Tooltip>}
+    >
+      <AiOutlineClose onClick={() => setIsOpen(false)} className="close-icon" />
+    </OverlayTrigger>
+  );
 
   return (
     <div className="chatbot-container">
-      {/* Added chatbot header */}
-      <div className="chatbot-header">
-        Chatbot
-      </div>
-      <div className="messages">
-        {conversation.map((msg, index) => (
-          // Updated message classes based on the sender
-          <div key={index} className={`message ${msg.sender === 'user' ? 'message-user' : 'message-chatbot'}`}>
-            <p><strong>{msg.sender === 'user' ? 'You' : 'Chatbot'}:</strong> {msg.content}</p>
+      {!isOpen ? (
+        <Button onClick={() => setIsOpen(true)} className="chat-toggle-btn">
+          Chat with us
+        </Button>
+      ) : (
+        <Container className="chat-interface">
+          <div className="chat-header">
+            <span>Chat with us</span>
+            <AiOutlineClose onClick={resetChat} className="close-icon" />
           </div>
-        ))}
-      </div>
-      {/* Updated input area structure */}
-      <div className="input-area">
-        <input
-          type="text"
-          className="input-field"
-          placeholder="Ask a question..."
-          value={userQuery}
-          onChange={handleInputChange}
-        />
-        <button onClick={handleSubmit} className="send-button">Send</button>
-      </div>
+          <ListGroup className="message-list">
+            {messages.map((message, index) => (
+              <ListGroup.Item key={index} className={`message ${message.sender}`}>
+                {message.text}
+              </ListGroup.Item>
+            ))}
+            {messages.length === 1 && defaultQuestions.map((q) => (
+              <ListGroup.Item 
+                key={q.id} 
+                className="message question" 
+                onClick={() => handleQuestionSelect(q.id)}
+              >
+                {q.question}
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        </Container>
+      )}
     </div>
   );
 };
