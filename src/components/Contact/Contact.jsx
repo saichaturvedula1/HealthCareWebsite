@@ -15,7 +15,13 @@ const containerVariants = {
 
 const Contact = () => {
 
-   
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent default form submission
+    // Here you can also add any front-end validation or actions before submitting the form
+
+    // Normally, you would handle the form submission to an API here,
+    // but Netlify Forms takes care of the submission for you.
+  };
 
   return (
     <motion.div
@@ -65,7 +71,7 @@ const Contact = () => {
       
       {/* Message Form Section */}
       <div className="message-form p-3 p-md-5">
-        <form>
+        <form method="POST" data-netlify="true" onSubmit={handleSubmit}>
           <div className="form-group">
             <input type="text" placeholder="Name" required />
             <input type="email" placeholder="Email Address" required />

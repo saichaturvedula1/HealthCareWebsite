@@ -98,7 +98,7 @@ function Careers() {
       <Row className="application-form-section my-5">
         <Col>
           
-          <Form onSubmit={handleSubmit}>
+          <Form method="POST" data-netlify="true" onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formFirstName">
               <Form.Label>First Name</Form.Label>
               <Form.Control type="text" placeholder="Enter your first name" name="firstName" onChange={handleChange} />
