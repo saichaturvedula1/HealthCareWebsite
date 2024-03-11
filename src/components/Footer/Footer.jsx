@@ -25,16 +25,16 @@ const Footer = () => {
 
      {/* Corrected Social Media Links */}
      <div className="d-flex justify-content-center mb-3">
-        <a href="https://facebook.com" className="me-4 text-reset" target="_blank">
+        <a href="https://facebook.com" className="me-4 text-reset" target="_blank" rel="noreferrer">
           <FontAwesomeIcon icon={faFacebookF} />
         </a>
-        <a href="https://twitter.com" className="me-4 text-reset" target="_blank"> 
+        <a href="https://twitter.com" className="me-4 text-reset" target="_blank" rel="noreferrer"> 
           <FontAwesomeIcon icon={faTwitter} />
         </a>
-        <a href="https://instagram.com" className="me-4 text-reset" target="_blank">
+        <a href="https://instagram.com" className="me-4 text-reset" target="_blank" rel="noreferrer">
           <FontAwesomeIcon icon={faInstagram} />
         </a>
-        <a href="https://linkedin.com" className="me-4 text-reset" target="_blank">
+        <a href="https://linkedin.com" className="me-4 text-reset" target="_blank" rel="noreferrer">
           <FontAwesomeIcon icon={faLinkedin} />
         </a>
       </div>

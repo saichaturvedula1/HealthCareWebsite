@@ -49,20 +49,7 @@ const Chatbot = () => {
     setMessages((prevMessages) => [...prevMessages, message]);
   };
 
-  const chatButton = (
-    <Button onClick={() => setIsOpen(true)} className="chat-toggle-btn">
-      Chat with us <BsChatDots />
-    </Button>
-  );
-
-  const closeButton = (
-    <OverlayTrigger
-      placement="left"
-      overlay={<Tooltip id="close-tooltip">Close Chat</Tooltip>}
-    >
-      <AiOutlineClose onClick={() => setIsOpen(false)} className="close-icon" />
-    </OverlayTrigger>
-  );
+ 
 
   return (
     <div className="chatbot-container">

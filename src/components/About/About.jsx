@@ -1,7 +1,6 @@
 import React from 'react';
 import './About.css';
 import doctorImage from '../../images/doctor-image.png';
-import valuesImg from '../../images/values.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faMedal, faHandshake } from '@fortawesome/free-solid-svg-icons';
 import { Fade, Slide } from 'react-awesome-reveal'; // Import the animations you plan to use
