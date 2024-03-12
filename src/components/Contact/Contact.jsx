@@ -126,14 +126,18 @@ const Contact = () => {
       <div className="message-form p-3 p-md-5">
         <form method="POST" data-netlify="true" onSubmit={handleSubmit}>
           <div className="form-group">
-            <input type="text" placeholder="Name" required />
-            <input type="email" placeholder="Email Address" required />
+            <input type="text" placeholder="Name" required  onChange={handleInputChange}/>
+            {errors.name && <p className="text-danger">{errors.name}</p>}
+            <input type="email" placeholder="Email Address" required onChange={handleInputChange}/>
+            {errors.email && <p className="text-danger">{errors.email}</p>}
           </div>
           <div className="form-group">
-            <input type="text" placeholder="Subject" required />
+            <input type="text" placeholder="Subject" required onChange={handleInputChange}/>
+            {errors.subject && <p className="text-danger">{errors.subject}</p>}
           </div>
           <div className="form-group">
-            <textarea placeholder="Message" required></textarea>
+            <textarea placeholder="Message" required onChange={handleInputChange}></textarea>
+            {errors.message && <p className="text-danger">{errors.message}</p>}
           </div>
           <button type="submit" className="submit-btn">Submit</button>
         </form>
