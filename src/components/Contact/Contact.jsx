@@ -16,59 +16,60 @@ const containerVariants = {
 const Contact = () => {
 
   // State for input fields
-  const [inputFields, setInputFields] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
+
+  // const [inputFields, setInputFields] = useState({
+  //   name: '',
+  //   email: '',
+  //   subject: '',
+  //   message: '',
+  // });
 
   // State for validation errors
-  const [errors, setErrors] = useState({});
+  //const [errors, setErrors] = useState({});
 
   // State to track form submission status
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   // Function to validate email format
-  const validateEmail = (email) => {
-    return email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-  };
+  // const validateEmail = (email) => {
+  //   return email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+  // };
 
   // Handling input field changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setInputFields({ ...inputFields, [name]: value });
-    // If the user modifies any input after submission, hide the success message
-    if (isSubmitted) setIsSubmitted(false);
-  };
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setInputFields({ ...inputFields, [name]: value });
+  //   if (isSubmitted) setIsSubmitted(false);
+  // };
 
   // Validate form fields
-  const validateForm = () => {
-    let tempErrors = {};
-    tempErrors.name = inputFields.name ? '' : 'Name is required';
-    tempErrors.email = validateEmail(inputFields.email) ? '' : 'Email is not valid';
-    tempErrors.subject = inputFields.subject ? '' : 'Subject is required';
-    tempErrors.message = inputFields.message ? '' : 'Message is required';
-    setErrors(tempErrors);
 
-    return Object.values(tempErrors).every(x => x === "");
-  };
+  // const validateForm = () => {
+  //   let tempErrors = {};
+  //   tempErrors.name = inputFields.name ? '' : 'Name is required';
+  //   tempErrors.email = validateEmail(inputFields.email) ? '' : 'Email is not valid';
+  //   tempErrors.subject = inputFields.subject ? '' : 'Subject is required';
+  //   tempErrors.message = inputFields.message ? '' : 'Message is required';
+  //   setErrors(tempErrors);
+
+  //   return Object.values(tempErrors).every(x => x === "");
+  // };
 
   // Handling form submission
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitted(true);
 
-    if (validateForm()) {
-      // Form validation passed
-      console.log('Form data:', inputFields);
-      // Reset form fields after submission
-      setInputFields({name: '', email: '', subject: '', message: ''});
-      setIsSubmitted(true); // Update the submission status to show the success message
-    } else {
-      // Form validation failed
-      console.log('Validation errors:', errors);
-      setIsSubmitted(false);
-    }
+    // if (validateForm()) {
+    //   console.log('Form data:', inputFields);
+    //   setInputFields({name: '', email: '', subject: '', message: ''});
+    //   setIsSubmitted(true);
+    // } 
+    // else {
+    //   console.log('Validation errors:', errors);
+    //   setIsSubmitted(false);
+    // }
   };
 
 
@@ -126,18 +127,18 @@ const Contact = () => {
       <div className="message-form p-3 p-md-5">
         <form method="POST" data-netlify="true" onSubmit={handleSubmit}>
           <div className="form-group">
-            <input type="text" placeholder="Name" required  onChange={handleInputChange}/>
-            {errors.name && <p className="text-danger">{errors.name}</p>}
-            <input type="email" placeholder="Email Address" required onChange={handleInputChange}/>
-            {errors.email && <p className="text-danger">{errors.email}</p>}
+            <input type="text" placeholder="Name" required />
+            {/* {errors.name && <p className="text-danger">{errors.name}</p>} */}
+            <input type="email" placeholder="Email Address" required />
+            {/* {errors.email && <p className="text-danger">{errors.email}</p>} */}
           </div>
           <div className="form-group">
-            <input type="text" placeholder="Subject" required onChange={handleInputChange}/>
-            {errors.subject && <p className="text-danger">{errors.subject}</p>}
+            <input type="text" placeholder="Subject" required />
+            {/* {errors.subject && <p className="text-danger">{errors.subject}</p>} */}
           </div>
           <div className="form-group">
-            <textarea placeholder="Message" required onChange={handleInputChange}></textarea>
-            {errors.message && <p className="text-danger">{errors.message}</p>}
+            <textarea placeholder="Message" required ></textarea>
+            {/* {errors.message && <p className="text-danger">{errors.message}</p>} */}
           </div>
           <button type="submit" className="submit-btn">Submit</button>
         </form>
