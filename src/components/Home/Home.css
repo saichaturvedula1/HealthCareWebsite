@@ -46,10 +46,3 @@
     max-height: 200px;
   }
 }
-
-@media only screen and (max-device-width: 812px) { /* Adjust width as needed */
-  .video-container video {
-    width: 100%; /* Adjust as necessary */
-    height: auto; /* Adjust as necessary */
-  }
-}
