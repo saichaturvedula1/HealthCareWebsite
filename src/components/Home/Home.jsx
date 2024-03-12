@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './Home.css';
 import welcomevideo from '../../video/Welcome_video.mp4';
 // Importing components from react-awesome-reveal
@@ -20,7 +20,24 @@ const HomePage = () => {
     { id: 12, type: "Private Pay"}
   ];
 
-  
+  useEffect(() => {
+    const adjustVideoForIOS = () => {
+      // Apply changes specifically for iOS devices
+      const videos = document.querySelectorAll('video');
+      videos.forEach(video => {
+        video.setAttribute('playsinline', '');
+        video.muted = true; // Mute the video
+        video.play().catch(error => console.error("Autoplay was prevented:", error));
+      });
+    };
+
+    const isIOS = () => /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+    if (isIOS()) {
+      adjustVideoForIOS();
+    }
+  }, []); // Empty dependency array means this effect runs once after the initial render
+
 
   return (
     <div className="Home">
