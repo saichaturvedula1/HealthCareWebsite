@@ -125,8 +125,9 @@ const Contact = () => {
       
       {/* Message Form Section */}
       <div className="message-form p-3 p-md-5">
-        <form method="POST" data-netlify="true" onSubmit={handleSubmit}>
+        <form name="contact" method="POST" onSubmit={handleSubmit}>
           <div className="form-group">
+          <input type="hidden" name="form-name" value="contact" />
             <input type="text" placeholder="Name" required />
             {/* {errors.name && <p className="text-danger">{errors.name}</p>} */}
             <input type="email" placeholder="Email Address" required />
