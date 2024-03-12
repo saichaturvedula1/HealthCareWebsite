@@ -1,5 +1,5 @@
 // Contact.jsx
-import React from 'react';
+import React, {useState} from 'react';
 import { motion } from 'framer-motion';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Contact.css';
@@ -15,13 +15,63 @@ const containerVariants = {
 
 const Contact = () => {
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission
-    // Here you can also add any front-end validation or actions before submitting the form
+  // State for input fields
+  const [inputFields, setInputFields] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
 
-    // Normally, you would handle the form submission to an API here,
-    // but Netlify Forms takes care of the submission for you.
+  // State for validation errors
+  const [errors, setErrors] = useState({});
+
+  // State to track form submission status
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Function to validate email format
+  const validateEmail = (email) => {
+    return email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
   };
+
+  // Handling input field changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setInputFields({ ...inputFields, [name]: value });
+    // If the user modifies any input after submission, hide the success message
+    if (isSubmitted) setIsSubmitted(false);
+  };
+
+  // Validate form fields
+  const validateForm = () => {
+    let tempErrors = {};
+    tempErrors.name = inputFields.name ? '' : 'Name is required';
+    tempErrors.email = validateEmail(inputFields.email) ? '' : 'Email is not valid';
+    tempErrors.subject = inputFields.subject ? '' : 'Subject is required';
+    tempErrors.message = inputFields.message ? '' : 'Message is required';
+    setErrors(tempErrors);
+
+    return Object.values(tempErrors).every(x => x === "");
+  };
+
+  // Handling form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validateForm()) {
+      // Form validation passed
+      console.log('Form data:', inputFields);
+      // Reset form fields after submission
+      setInputFields({name: '', email: '', subject: '', message: ''});
+      setIsSubmitted(true); // Update the submission status to show the success message
+    } else {
+      // Form validation failed
+      console.log('Validation errors:', errors);
+      setIsSubmitted(false);
+    }
+  };
+
+
 
   return (
     <motion.div
@@ -67,7 +117,10 @@ const Contact = () => {
       
       </div>
 
-      
+      {/* Success Message */}
+      {isSubmitted && <div className="alert alert-success" role="alert">
+        Contact Details submitted successfully!
+      </div>}
       
       {/* Message Form Section */}
       <div className="message-form p-3 p-md-5">
@@ -90,3 +143,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

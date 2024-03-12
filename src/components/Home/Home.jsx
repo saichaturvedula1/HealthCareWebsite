@@ -34,7 +34,7 @@ const HomePage = () => {
       </header>
       <div className="video-container">
         <Zoom duration={2000}>
-          <video autoPlay loop muted className="w-100">
+          <video autoPlay loop muted playsInline className="w-100">
             <source src={welcomevideo} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
