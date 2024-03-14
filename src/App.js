@@ -51,7 +51,7 @@ function App() {
           </div>
           <Footer/>
            {/* Chatbot Component Added Here */}
-           <Chatbot/>
+           <Chatbot footerHeight={footerHeight}/>
         </div>
       </Router>
     );
