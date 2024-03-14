@@ -110,8 +110,11 @@ const Contact = () => {
       {/* Message Form Section */}
       <div className="message-form p-3 p-md-5">
         <form name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit}>
+          {/* Honeypot field for spam filtering - should be hidden and left empty by humans */}
+          <input type="hidden" name="bot-field" />
+          {/* Hidden input to link the form with Netlify configuration */}
+          <input type="hidden" name="form-name" value="contact" />
           <div className="form-group">
-            <input type="hidden" name="form-name" value="contact" />
             <input type="text" name="name" placeholder="Name" value={formFields.name} onChange={handleInputChange} required />
             {errors.name && <p className="text-danger">{errors.name}</p>}
             <input type="email" name="email" placeholder="Email Address" value={formFields.email} onChange={handleInputChange} required />
