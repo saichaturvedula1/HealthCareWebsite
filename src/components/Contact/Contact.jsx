@@ -48,34 +48,7 @@ const Contact = () => {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if(validate()){
-
-  //     setIsSubmitted(true);
-  //     // Here you can also integrate any API call to submit the form data
-  //   }
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (validate()) {
-  //     axios({
-  //       method: 'post',
-  //       url: '/.netlify/functions/handleSubmit',
-  //       data: formFields,
-  //     })
-  //     .then(response => {
-  //       console.log('Form submitted successfully:', response);
-  //       setIsSubmitted(true);
-  //     })
-  //     .catch(error => {
-  //       console.error('Form submission error:', error);
-  //     });
-  //   }
-  // };
   
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if(validate()){

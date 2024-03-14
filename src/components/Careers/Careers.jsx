@@ -87,6 +87,12 @@ const Careers = () => {
 
   const [validationMessage, setValidationMessage] = useState('');
 
+  // New state to disable the submit button
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
+
+  // Using an object to manage the disabled state of each job's apply button
+  const [isApplyDisabled, setIsApplyDisabled] = useState({});
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setApplicant(prevState => ({
@@ -101,16 +107,17 @@ const Careers = () => {
     setSelectedJobId(prevSelectedJobId => (
       prevSelectedJobId === jobId ? null : jobId
     ));
+    // Disable the apply button for this job
+  setIsApplyDisabled(prevState => ({...prevState, [jobId]: true}));
   };
-
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+    setIsSubmitDisabled(true); // Disable the submit button
     // Basic Validation
     if (!applicant.firstName || !applicant.lastName || !applicant.email || !applicant.phone || !applicant.address || !applicant.desiredPay) {
       setValidationMessage('All fields are required.');
+      setIsSubmitDisabled(false); // Re-enable the submit button if submission failed
       return;
     }
   
@@ -118,6 +125,7 @@ const Careers = () => {
     const emailRegex = /\S+@\S+\.\S+/;
     if (!emailRegex.test(applicant.email)) {
       setValidationMessage('Invalid email format.');
+      setIsSubmitDisabled(false); // Re-enable the submit button if submission failed
       return;
     }
   
@@ -147,6 +155,14 @@ const Careers = () => {
         desiredPay: '',
       });
       setValidationMessage('Application submitted successfully!');
+
+      // After 3 seconds, close the form and re-enable buttons
+      setTimeout(() => {
+      setSelectedJobId(null); // Close the form
+      setIsSubmitDisabled(false); // Re-enable the submit button
+      setIsApplyDisabled(prevState => ({...prevState, [selectedJobId]: false})); // Re-enable the apply button for this job
+      setValidationMessage(''); // Optional: Clear the validation message
+    }, 3000);
   
     } catch (error) {
       console.error('Form submission error:', error);
@@ -237,6 +253,7 @@ const Careers = () => {
                 <Button
                   variant="contained"
                   color="primary"
+                  disabled={isApplyDisabled[job.id]} // Apply the disabled state
                   onClick={() => handleApplyClick(job.id)}
                 >
                   Apply
@@ -316,6 +333,7 @@ const Careers = () => {
                       fullWidth
                       variant="contained"
                       color="secondary"
+                      disabled={isSubmitDisabled} // Apply the disabled state
                       sx={{ mt: 2 }}
                     >
                       Submit Application
