@@ -1,6 +1,7 @@
 // src/components/JobListing.js
 import React, { useState } from 'react';
-import {Container, Typography, Card, CardContent, TextField, Button, Checkbox, FormControlLabel, FormGroup, Box, Alert,Grid} from '@mui/material';
+import { Container, Typography, Card, CardContent, TextField, Button, Checkbox, FormControlLabel, FormGroup, Box, Alert, Grid } from '@mui/material';
+import axios from 'axios';
 import './Careers.css';
 
 
@@ -72,213 +73,261 @@ const jobs = [
 ]
 
 const Careers = () => {
- 
+
   const [selectedJobId, setSelectedJobId] = useState(null);
 
   const [applicant, setApplicant] = useState({
-    name: '',
+    firstName: '', // Added field for first name
+    lastName: '', // Added field for last name
     email: '',
     phone: '',
-    resume: null,
+    address: '', // Added field for address
+    desiredPay: '', // Added field for desired pay
   });
 
   const [validationMessage, setValidationMessage] = useState('');
 
-
-  // Update applicant state
   const handleInputChange = (event) => {
-    const { name, value, files } = event.target;
-    if (name === "resume") {
-      setApplicant(prevState => ({
-        ...prevState,
-        resume: files[0], // Only single file upload is considered here
-      }));
-    } else {
-      setApplicant(prevState => ({
-        ...prevState,
-        [name]: value,
-      }));
-    }
+    const { name, value } = event.target;
+    setApplicant(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
 
-  // If the current job is already selected, deselect it. Otherwise, select it.
-const handleApplyClick = (jobId) => {
-  setSelectedJobId(prevSelectedJobId => (
-    prevSelectedJobId === jobId ? null : jobId
-  ));
-};
+
+  const handleApplyClick = (jobId) => {
+    setSelectedJobId(prevSelectedJobId => (
+      prevSelectedJobId === jobId ? null : jobId
+    ));
+  };
 
 
 
-  // Simple validation and submission logic
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!applicant.name || !applicant.email || !applicant.phone || !applicant.resume) {
+  
+    // Basic Validation
+    if (!applicant.firstName || !applicant.lastName || !applicant.email || !applicant.phone || !applicant.address || !applicant.desiredPay) {
       setValidationMessage('All fields are required.');
       return;
     }
-    // Add more validations as required, e.g., for phone and resume
-
-    console.log('Application submitted:', applicant);
-    // Reset the form
-    setApplicant({
-      name: '',
-      email: '',
-      phone: '',
-      resume: null,
+  
+    // Email validation
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(applicant.email)) {
+      setValidationMessage('Invalid email format.');
+      return;
+    }
+  
+    // Prepare FormData object for Netlify
+    const formData = new FormData();
+    formData.append('form-name', 'application');
+    Object.keys(applicant).forEach(key => {
+      formData.append(key, applicant[key]);
     });
-    setValidationMessage('Application submitted successfully!');
+  
+    try {
+      const response = await axios({
+        method: 'post',
+        url: '/', // Assuming you're submitting to the same URL; adjust if needed
+        data: formData,
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+  
+      // Success
+      console.log('Form submitted successfully:', response);
+      setApplicant({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        address: '',
+        desiredPay: '',
+      });
+      setValidationMessage('Application submitted successfully!');
+  
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setValidationMessage('An error occurred during submission.');
+    }
   };
+  
+
 
 
   const [searchTerm, setSearchTerm] = useState('');
-const [selectedCategories, setSelectedCategories] = useState(new Set());
+  const [selectedCategories, setSelectedCategories] = useState(new Set());
 
-// Update the handleInputChange for search and category selection
-// ... existing handleInputChange code
-const handleSearchChange = event => {
-  setSearchTerm(event.target.value);
-  // Reset the category filters whenever the search input is changed
-  setSelectedCategories(new Set());
-};
+  // Update the handleInputChange for search and category selection
+  // ... existing handleInputChange code
+  const handleSearchChange = event => {
+    setSearchTerm(event.target.value);
+    // Reset the category filters whenever the search input is changed
+    setSelectedCategories(new Set());
+  };
 
-const handleCategoryChange = event => {
-  const category = event.target.value;
-  setSelectedCategories(prev => {
-    const newCategories = new Set(prev);
-    if (newCategories.has(category)) {
-      newCategories.delete(category);
-    } else {
-      newCategories.add(category);
-    }
-    return newCategories;
+  const handleCategoryChange = event => {
+    const category = event.target.value;
+    setSelectedCategories(prev => {
+      const newCategories = new Set(prev);
+      if (newCategories.has(category)) {
+        newCategories.delete(category);
+      } else {
+        newCategories.add(category);
+      }
+      return newCategories;
+    });
+    // Reset the search term whenever a category filter changes
+    setSearchTerm('');
+  };
+
+  const getCategories = (jobs) => {
+    const categories = new Set();
+    jobs.forEach(job => {
+      categories.add(job.category);
+    });
+    return Array.from(categories);
+  };
+
+  const filteredJobs = jobs.filter(job => {
+    const matchesSearchTerm = job.title.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategories.size === 0 || selectedCategories.has(job.category);
+    return matchesSearchTerm && matchesCategory;
   });
-  // Reset the search term whenever a category filter changes
-  setSearchTerm('');
-};
-
-const getCategories = (jobs) => {
-  const categories = new Set();
-  jobs.forEach(job => {
-    categories.add(job.category);
-  });
-  return Array.from(categories);
-};
-
-const filteredJobs = jobs.filter(job => {
-  const matchesSearchTerm = job.title.toLowerCase().includes(searchTerm.toLowerCase());
-  const matchesCategory = selectedCategories.size === 0 || selectedCategories.has(job.category);
-  return matchesSearchTerm && matchesCategory;
-});
 
 
   return (
-<Container maxWidth="lg">
-<Typography variant="h4" gutterBottom>
-  Open Positions
-</Typography>
-<TextField
-  fullWidth
-  label="Search job titles..."
-  variant="outlined"
-  value={searchTerm}
-  onChange={handleSearchChange}
-  margin="normal"
-/>
-<FormGroup row>
-  {getCategories(jobs).map(category => (
-    <FormControlLabel
-      key={category}
-      control={
-        <Checkbox
-          checked={selectedCategories.has(category)}
-          onChange={handleCategoryChange}
-          value={category}
-        />
-      }
-      label={category}
-    />
-  ))}
-</FormGroup>
-<Grid container spacing={2}>
-  {filteredJobs.map(job => (
-    <Grid item key={job.id} xs={12} sm={6} md={4}>
-      <Card variant="outlined">
-        <CardContent>
-          <Typography variant="h5">{job.title}</Typography>
-          <Typography color="textSecondary">{job.location}</Typography>
-          <Typography>{job.description}</Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => handleApplyClick(job.id)}
-          >
-            Apply
-          </Button>
-          {selectedJobId === job.id && (
-            <Box component="form" onSubmit={handleSubmit} noValidate>
-              {validationMessage && (
-                <Alert severity="info">{validationMessage}</Alert>
-              )}
-              <TextField
-                fullWidth
-                label="Name"
-                variant="outlined"
-                name="name"
-                value={applicant.name}
-                onChange={handleInputChange}
-                margin="normal"
+    <Container maxWidth="lg">
+      <Typography variant="h4" gutterBottom>
+        Open Positions
+      </Typography>
+      <TextField
+        fullWidth
+        label="Search job titles..."
+        variant="outlined"
+        value={searchTerm}
+        onChange={handleSearchChange}
+        margin="normal"
+      />
+      <FormGroup row>
+        {getCategories(jobs).map(category => (
+          <FormControlLabel
+            key={category}
+            control={
+              <Checkbox
+                checked={selectedCategories.has(category)}
+                onChange={handleCategoryChange}
+                value={category}
               />
-              <TextField
-                fullWidth
-                label="Email"
-                variant="outlined"
-                name="email"
-                value={applicant.email}
-                onChange={handleInputChange}
-                margin="normal"
-              />
-              <TextField
-                fullWidth
-                label="Phone"
-                variant="outlined"
-                name="phone"
-                value={applicant.phone}
-                onChange={handleInputChange}
-                margin="normal"
-              />
-              <Button
-                variant="outlined"
-                component="label"
-                fullWidth
-                sx={{ mt: 2 }}
-              >
-                Upload Resume
-                <input
-                  type="file"
-                  hidden
-                  name="resume"
-                  onChange={handleInputChange}
-                />
-              </Button>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="secondary"
-                sx={{ mt: 2 }}
-              >
-                Submit Application
-              </Button>
-            </Box>
-          )}
-        </CardContent>
-      </Card>
-    </Grid>
-  ))}
-</Grid>
-</Container>
+            }
+            label={category}
+          />
+        ))}
+      </FormGroup>
+      <Grid container spacing={2}>
+        {filteredJobs.map(job => (
+          <Grid item key={job.id} xs={12} sm={6} md={4}>
+            <Card variant="outlined">
+              <CardContent>
+                <Typography variant="h5">{job.title}</Typography>
+                <Typography color="textSecondary">{job.location}</Typography>
+                <Typography>{job.description}</Typography>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => handleApplyClick(job.id)}
+                >
+                  Apply
+                </Button>
+                {selectedJobId === job.id && (
+                  <Box component="form" 
+                  onSubmit={handleSubmit} 
+                  noValidate 
+                  data-netlify="true" 
+                  name="application"  // This name attribute is essential for Netlify to identify the form
+                  id={`job-application-${job.id}`} >
+                     {/* Netlify's hidden input for form name */}
+                    <input type="hidden" name="form-name" value="application" />
+                    {/* Netlify's honeypot field for spam filtering (optional but recommended) */}
+                    <input name="bot-field" hidden />
+                    {validationMessage && (
+                      <Alert severity="info">{validationMessage}</Alert>
+                    )}
+                    <TextField
+                      fullWidth
+                      label="First Name"
+                      variant="outlined"
+                      name="firstName"
+                      value={applicant.firstName}
+                      onChange={handleInputChange}
+                      margin="normal"
+                    />
+                    <TextField
+                      fullWidth
+                      label="Last Name"
+                      variant="outlined"
+                      name="lastName"
+                      value={applicant.lastName}
+                      onChange={handleInputChange}
+                      margin="normal"
+                    />
+                    <TextField
+                      fullWidth
+                      label="Email"
+                      variant="outlined"
+                      name="email"
+                      value={applicant.email}
+                      onChange={handleInputChange}
+                      margin="normal"
+                    />
+                    <TextField
+                      fullWidth
+                      label="Phone"
+                      variant="outlined"
+                      name="phone"
+                      value={applicant.phone}
+                      onChange={handleInputChange}
+                      margin="normal"
+                      type="number"
+                    />
+                    <TextField
+                      fullWidth
+                      label="Address"
+                      variant="outlined"
+                      name="address"
+                      value={applicant.address}
+                      onChange={handleInputChange}
+                      margin="normal"
+                    />
+                    <TextField
+                      fullWidth
+                      label="Desired Pay"
+                      variant="outlined"
+                      name="desiredPay"
+                      value={applicant.desiredPay}
+                      onChange={handleInputChange}
+                      margin="normal"
+                      type="number"
+                    />
+                    <Button
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      color="secondary"
+                      sx={{ mt: 2 }}
+                    >
+                      Submit Application
+                    </Button>
+                  </Box>
+                )}
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 };
 

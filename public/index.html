@@ -27,7 +27,7 @@
     <title>React App</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
     <!-- A little help for the Netlify bots if you're not using a SSG -->
     <form name="contact" netlify netlify-honeypot="bot-field" hidden>
       <input type="text" name="name" />
@@ -35,16 +35,19 @@
       <textarea name="message"></textarea>
     </form>
 
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <!-- Hidden form for Netlify -->
+    <form name="application" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="firstName">
+      <input type="text" name="lastName">
+      <input type="email" name="email">
+      <input type="number" name="phone">
+      <input type="text" name="address">
+      <input type="number" name="desiredPay">
+      <textarea name="coverLetter"></textarea>
+      <!-- The 'bot-field' is a honeypot field that should be hidden and must remain empty -->
+      <input name="bot-field" style="display:none">
+  </form>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    
   </body>
 </html>
