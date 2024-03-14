@@ -1,151 +1,285 @@
+// src/components/JobListing.js
 import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col, Image, Card, ListGroup } from 'react-bootstrap';
-import careers from '../../images/careers.png';
+import {Container, Typography, Card, CardContent, TextField, Button, Checkbox, FormControlLabel, FormGroup, Box, Alert,Grid} from '@mui/material';
 import './Careers.css';
-function Careers() {
-  const [errors, setErrors] = useState({});
 
-  const validateForm = () => {
-    let formIsValid = true;
-    let errors = {};
-  
-    // Example validation for the email field
-    if (!formData.email) {
-      formIsValid = false;
-      errors["email"] = "Email is required.";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      formIsValid = false;
-      errors["email"] = "Email is not valid.";
-    }
-  
-    // Add similar validation checks for other fields as needed
-  
-    setErrors(errors);
-    return formIsValid;
-  };
-  
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    dateOfBirth: '',
+
+
+const jobs = [
+  {
+    "id": "1",
+    "title": "Registered Nurse",
+    "location": "New York, NY",
+    "category": "Nursing",
+    "description": "Providing patient care and support."
+  },
+  {
+    "id": "2",
+    "title": "Medical Assistant",
+    "location": "Los Angeles, CA",
+    "category": "Clinical",
+    "description": "Assist in patient assessment and treatment."
+  },
+  {
+    "id": "3",
+    "title": "Healthcare Administrator",
+    "location": "Chicago, IL",
+    "category": "Administration",
+    "description": "Manage healthcare facility operations."
+  },
+  {
+    "id": "4",
+    "title": "Pharmacist",
+    "location": "Houston, TX",
+    "category": "Pharmacy",
+    "description": "Provide and manage patient medication."
+  },
+  {
+    "id": "5",
+    "title": "Physical Therapist",
+    "location": "Philadelphia, PA",
+    "category": "Rehabilitation",
+    "description": "Assist patients in physical recovery."
+  },
+  {
+    "id": "6",
+    "title": "Dental Hygienist",
+    "location": "Phoenix, AZ",
+    "category": "Dental",
+    "description": "Perform dental cleanings."
+  },
+  {
+    "id": "7",
+    "title": "Clinical Laboratory Technician",
+    "location": "San Antonio, TX",
+    "category": "Laboratory",
+    "description": "Conduct tests and provide lab results."
+  },
+  {
+    "id": "8",
+    "title": "Radiologic Technologist",
+    "location": "San Diego, CA",
+    "category": "Radiology",
+    "description": "Perform diagnostic imaging examinations."
+  },
+  {
+    "id": "9",
+    "title": "Health Information Technician",
+    "location": "Dallas, TX",
+    "category": "Informatics",
+    "description": "Manage patient health information."
+  }
+]
+
+const Careers = () => {
+ 
+  const [selectedJobId, setSelectedJobId] = useState(null);
+
+  const [applicant, setApplicant] = useState({
+    name: '',
     email: '',
     phone: '',
-    positionApplyingFor: '',
-    availableStartDate: '',
     resume: null,
   });
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: files ? files[0] : value,
-    }));
-  };
+  const [validationMessage, setValidationMessage] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!validateForm()) {
-    alert('Please correct the errors before submitting.');
-    return;
+
+  // Update applicant state
+  const handleInputChange = (event) => {
+    const { name, value, files } = event.target;
+    if (name === "resume") {
+      setApplicant(prevState => ({
+        ...prevState,
+        resume: files[0], // Only single file upload is considered here
+      }));
+    } else {
+      setApplicant(prevState => ({
+        ...prevState,
+        [name]: value,
+      }));
     }
-    // Proceed with form submission logic here
-    console.log(formData);
-    alert('Application submitted successfully!');
   };
 
 
-  // Dummy data for job openings
-  const jobOpenings = [
-    { title: 'Registered Nurse', description: 'Provide patient care and support.' },
-    { title: 'Physical Therapist', description: 'Assist patients in physical recovery.' },
-    { title: 'Medical Assistant', description: 'Manage clinical duties and patient care.' },
-    { title: 'Healthcare Administrator', description: 'Oversee operations and services.' },
-    // ... add more job openings as needed
-  ];
+  // If the current job is already selected, deselect it. Otherwise, select it.
+const handleApplyClick = (jobId) => {
+  setSelectedJobId(prevSelectedJobId => (
+    prevSelectedJobId === jobId ? null : jobId
+  ));
+};
+
+
+
+  // Simple validation and submission logic
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!applicant.name || !applicant.email || !applicant.phone || !applicant.resume) {
+      setValidationMessage('All fields are required.');
+      return;
+    }
+    // Add more validations as required, e.g., for phone and resume
+
+    console.log('Application submitted:', applicant);
+    // Reset the form
+    setApplicant({
+      name: '',
+      email: '',
+      phone: '',
+      resume: null,
+    });
+    setValidationMessage('Application submitted successfully!');
+  };
+
+
+  const [searchTerm, setSearchTerm] = useState('');
+const [selectedCategories, setSelectedCategories] = useState(new Set());
+
+// Update the handleInputChange for search and category selection
+// ... existing handleInputChange code
+const handleSearchChange = event => {
+  setSearchTerm(event.target.value);
+  // Reset the category filters whenever the search input is changed
+  setSelectedCategories(new Set());
+};
+
+const handleCategoryChange = event => {
+  const category = event.target.value;
+  setSelectedCategories(prev => {
+    const newCategories = new Set(prev);
+    if (newCategories.has(category)) {
+      newCategories.delete(category);
+    } else {
+      newCategories.add(category);
+    }
+    return newCategories;
+  });
+  // Reset the search term whenever a category filter changes
+  setSearchTerm('');
+};
+
+const getCategories = (jobs) => {
+  const categories = new Set();
+  jobs.forEach(job => {
+    categories.add(job.category);
+  });
+  return Array.from(categories);
+};
+
+const filteredJobs = jobs.filter(job => {
+  const matchesSearchTerm = job.title.toLowerCase().includes(searchTerm.toLowerCase());
+  const matchesCategory = selectedCategories.size === 0 || selectedCategories.has(job.category);
+  return matchesSearchTerm && matchesCategory;
+});
+
 
   return (
-    <Container className="my-5 career-page">
-
-      <Row className="align-items-center my-5">
-         <Col>
-          <h2 className="text-center">Be a Part of Our Growing Family!</h2>
-          <p>We are always looking to hire more professionals to join our team in the healthcare industry.</p>
-          <Image src={careers} fluid className="mb-3"/>
-          <p>Join us and make a difference in providing quality care to our community.</p>
-          {/* Add more images and text as needed */}
-        </Col>
-        </Row>
-
-        <Row className="job-openings-section my-5">
-        <Col>
-          <h3 className="text-center mb-4">Current Job Openings</h3>
-          <ListGroup>
-            {jobOpenings.map((job, index) => (
-              <ListGroup.Item key={index} className="job-opening">
-                <Card>
-                  <Card.Body>
-                    <Card.Title>{job.title}</Card.Title>
-                    <Card.Text>{job.description}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-        </Col>
-      </Row>
-       
-      <Row className="application-form-section my-5">
-        <Col>
-          
-          <Form method="POST" data-netlify="true" onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formFirstName">
-              <Form.Label>First Name</Form.Label>
-              <Form.Control type="text" placeholder="Enter your first name" name="firstName" onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formLastName">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control type="text" placeholder="Enter your last name" name="lastName" onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formDateOfBirth">
-              <Form.Label>Date of Birth</Form.Label>
-              <Form.Control type="date" name="dateOfBirth" onChange={handleChange} />
-            </Form.Group>
-            
-  
-            <Form.Group className="mb-3" controlId="formEmail">
-              <Form.Label>Email Address</Form.Label>
-              <Form.Control type="email" placeholder="Enter your email" name="email" onChange={handleChange} isInvalid={!!errors.email} />
-              <Form.Control.Feedback type="invalid">
-              {errors.email}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formPhone">
-              <Form.Label>Phone</Form.Label>
-              <Form.Control type="text" placeholder="Enter your phone number" name="phone" onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formPositionApplyingFor">
-              <Form.Label>Position Applying For</Form.Label>
-              <Form.Control type="text" placeholder="Position you are applying for" name="positionApplyingFor" onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formAvailableStartDate">
-              <Form.Label>Available Start Date</Form.Label>
-              <Form.Control type="date" name="availableStartDate" onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formResumeUpload">
-              <Form.Label>Resume Upload</Form.Label>
-              <Form.Control type="file" name="resume" onChange={handleChange} />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </Form>
-        </Col>
-        </Row>
-      
-    </Container>
+<Container maxWidth="lg">
+<Typography variant="h4" gutterBottom>
+  Open Positions
+</Typography>
+<TextField
+  fullWidth
+  label="Search job titles..."
+  variant="outlined"
+  value={searchTerm}
+  onChange={handleSearchChange}
+  margin="normal"
+/>
+<FormGroup row>
+  {getCategories(jobs).map(category => (
+    <FormControlLabel
+      key={category}
+      control={
+        <Checkbox
+          checked={selectedCategories.has(category)}
+          onChange={handleCategoryChange}
+          value={category}
+        />
+      }
+      label={category}
+    />
+  ))}
+</FormGroup>
+<Grid container spacing={2}>
+  {filteredJobs.map(job => (
+    <Grid item key={job.id} xs={12} sm={6} md={4}>
+      <Card variant="outlined">
+        <CardContent>
+          <Typography variant="h5">{job.title}</Typography>
+          <Typography color="textSecondary">{job.location}</Typography>
+          <Typography>{job.description}</Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => handleApplyClick(job.id)}
+          >
+            Apply
+          </Button>
+          {selectedJobId === job.id && (
+            <Box component="form" onSubmit={handleSubmit} noValidate>
+              {validationMessage && (
+                <Alert severity="info">{validationMessage}</Alert>
+              )}
+              <TextField
+                fullWidth
+                label="Name"
+                variant="outlined"
+                name="name"
+                value={applicant.name}
+                onChange={handleInputChange}
+                margin="normal"
+              />
+              <TextField
+                fullWidth
+                label="Email"
+                variant="outlined"
+                name="email"
+                value={applicant.email}
+                onChange={handleInputChange}
+                margin="normal"
+              />
+              <TextField
+                fullWidth
+                label="Phone"
+                variant="outlined"
+                name="phone"
+                value={applicant.phone}
+                onChange={handleInputChange}
+                margin="normal"
+              />
+              <Button
+                variant="outlined"
+                component="label"
+                fullWidth
+                sx={{ mt: 2 }}
+              >
+                Upload Resume
+                <input
+                  type="file"
+                  hidden
+                  name="resume"
+                  onChange={handleInputChange}
+                />
+              </Button>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="secondary"
+                sx={{ mt: 2 }}
+              >
+                Submit Application
+              </Button>
+            </Box>
+          )}
+        </CardContent>
+      </Card>
+    </Grid>
+  ))}
+</Grid>
+</Container>
   );
-}
+};
 
 export default Careers;
-

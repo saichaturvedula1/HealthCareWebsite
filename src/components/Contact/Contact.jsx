@@ -95,7 +95,7 @@ const Contact = () => {
         <div className="contact-item">
           <img src={emailIcon} alt="Email" />
           <h3>Email</h3>
-          <a href="mailto:admin@jcarehomehealth.net" className="contact-link">admin@jcarehomehealth.net</a>
+          <a href="mailto:saichaturvedula@gmail.com" className="contact-link">admin@jcarehomehealth.net</a>
         </div>
         {/* Address Info */}
         <div className="contact-item">

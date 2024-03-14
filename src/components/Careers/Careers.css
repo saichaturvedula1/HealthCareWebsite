@@ -1,138 +1,195 @@
-/* Basic Reset */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* careers.css */
+.job-listing .MuiCard-root {
+  cursor: pointer;
+  transition: transform 0.2s;
+  margin-bottom: 16px; /* Add bottom margin to prevent touching the footer */
+  border-left: 5px solid #007bff; /* Blue color for left border */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  height: 100%; /* Stretch card to container height */
+  min-height: 200px; /* Ensures all cards are at least 200px high */
 }
 
-body {
-  background-color: #f0f2f5;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 20px;
+.job-listing .MuiCard-root:hover {
+  transform: translateY(-5px); /* Slight raise effect on hover */
 }
 
-.container {
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-  max-width: 700px;
-  margin: 0 auto;
+.job-listing .MuiButton-root {
+  background-color: #28a745; /* Green color for apply button */
+  color: white;
 }
 
-h2 {
-  color: #333;
+.job-listing .MuiButton-root:hover {
+  background-color: #218838; /* Slightly darker green on hover */
+}
+
+.job-listing .MuiTextField-root {
+  width: 100%;
+  margin-bottom: 10px; /* Bottom margin for text fields */
+}
+
+.job-listing .MuiFormControlLabel-root {
+  display: block;
+  margin-right: 10px; /* Right margin for checkboxes */
+}
+
+.job-listing .MuiTypography-root {
+  margin-bottom: 10px; /* Bottom margin for Typography elements */
+}
+
+/* Adjust the size of the checkbox */
+.job-listing .MuiCheckbox-root {
+  color: #6c757d; /* Default checkbox color */
+}
+
+.job-listing .MuiCheckbox-root.Mui-checked {
+  color: #007bff; /* Blue color when checkbox is checked */
+}
+
+.job-listing .MuiAlert-root {
+  margin-bottom: 20px; /* Bottom margin for alerts */
+}
+
+/* This can be used for a custom file input, if you are using MUI Button with input type="file" */
+.job-listing .custom-file-upload {
+  display: block;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  cursor: pointer;
   text-align: center;
+}
+
+.job-listing .custom-file-upload:hover {
+  background-color: #e9ecef;
+}
+
+/* Footer spacing */
+.job-listing .footer {
+  padding-top: 20px; /* Ensures there's space above the footer */
+}
+
+/* Ensure that the container of job cards does not touch the footer */
+.job-listing-container {
+  padding-bottom: 30px; /* Adjust the padding as necessary */
+}
+
+/* Search input field styles */
+.job-listing .search-input {
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+}
+
+/* Styles for filter labels and checkboxes */
+.job-listing .filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
-.form-label {
-  font-weight: bold;
-  color: #555;
+.job-listing .category-filter {
+  display: flex;
+  align-items: center;
 }
 
-.btn-primary {
-  background-color: #0056b3;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn-primary:hover {
-  background-color: #004494;
-}
-
-.form-control:focus {
-  border-color: #0056b3;
-  box-shadow: 0 0 0 0.2rem rgba(0, 86, 179, 0.25);
-}
-
-/* Error Message Styles */
-.is-invalid {
-  border-color: #dc3545;
-}
-
-.form-control-feedback {
-  color: #dc3545;
-}
-
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .container {
-      padding: 15px;
-    }
-  
-    .btn-primary {
-      padding: 8px 15px;
-      font-size: 14px;
-    }
+  .job-listing .filters {
+    flex-direction: column;
   }
-  
-  @media (max-width: 576px) {
-    .form-label {
-      font-size: 14px;
-    }
-  
-    .form-control {
-      font-size: 14px;
-    }
-  }
-  
+}
 
-  /* Assuming the className 'career-page' is added to the top-level container */
 
-.career-page .job-openings-section .list-group {
-    border: 0 !important;
-    border-radius: 0.5rem !important;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+
+
+/* careers.css */
+/* Global reset for Material-UI components to ensure consistent styling */
+.MuiContainer-root {
+  padding-top: 20px; /* Space at the top of the container */
+  padding-bottom: 60px; /* Space at the bottom to prevent cards from touching the footer */
+}
+
+/* Card styles for consistent appearance and functionality */
+.MuiCard-root {
+  display: flex; /* Use flex layout to allow child elements to fill space */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: space-between; /* Distribute space around items */
+  cursor: pointer;
+  transition: transform 0.2s; /* Smooth transition for scaling */
+  min-height: 200px; /* Minimum height for all cards */
+  margin-bottom: 16px; /* Margin at the bottom of each card */
+}
+
+/* Ensure hover effect on card, raise the card slightly */
+.MuiCard-root:hover {
+  transform: translateY(-5px);
+}
+
+/* Apply styling for button within the card */
+.MuiButton-root {
+  margin-top: auto; /* Push the button to the bottom of the card content */
+  margin-bottom: 16px; /* Provide some space below the button */
+  background-color: #28a745; /* Apply green background color */
+}
+
+/* Change button color on hover */
+.MuiButton-root:hover {
+  background-color: #218838;
+}
+
+/* Style the search bar at the top */
+.MuiTextField-root {
+  margin-bottom: 20px; /* Add space below the search bar */
+}
+
+/* Align checkboxes next to each other with proper spacing */
+.MuiFormGroup-row {
+  margin-bottom: 20px; /* Add space below the group */
+}
+
+/* Checkbox label styles */
+.MuiFormControlLabel-root {
+  margin-right: 16px; /* Add space to the right of each label */
+}
+
+/* Grid spacing for cards */
+.MuiGrid-container {
+  margin-bottom: 20px; /* Add space below the grid container */
+}
+
+/* Input fields within the form, no change in margins to maintain consistency */
+.MuiTextField-root {
+  margin-bottom: 16px; /* Add space below each text field */
+}
+
+/* Custom file upload button styles, no change needed */
+.custom-file-upload {
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 16px; /* Provide space above the upload button */
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+/* Style the alert message */
+.MuiAlert-root {
+  margin-bottom: 20px; /* Add space below the alert */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .MuiFormGroup-row {
+    flex-direction: column;
   }
-  
-  .career-page .job-openings-section .list-group-item {
-    border: 0 !important;
-    padding: 1.25rem 1.5rem !important;
-    background-color: #fafafa !important; /* Light background for each item */
-    color: #333 !important; /* Dark text for contrast */
-    border-bottom: 1px solid #e1e1e1 !important; /* subtle separation between items */
+
+  .MuiFormControlLabel-root {
+    margin-right: 0; /* Remove right margin for mobile view */
+    margin-bottom: 8px; /* Add space below each checkbox label */
   }
-  
-  /* Last child border fix */
-  .career-page .job-openings-section .list-group-item:last-child {
-    border-bottom: 0 !important;
-  }
-  
-  .career-page .job-openings-section .card {
-    background: none !important;
-    border: 0 !important;
-  }
-  
-  .career-page .job-openings-section .card-body {
-    padding: 0 !important; /* Remove padding as it's handled by list-group-item */
-  }
-  
-  .career-page .job-openings-section .card-title {
-    font-size: 1.25rem !important;
-    color: #0056b3 !important; /* A color that suits your brand */
-  }
-  
-  .career-page .job-openings-section .card-text {
-    font-size: 1rem !important;
-    color: #666 !important; /* Subtle color for text */
-  }
-  
-  /* Hover effect for each job listing */
-  .career-page .job-openings-section .list-group-item:hover {
-    background-color: #eef4fa !important; /* A light blue that suits your brand on hover */
-    cursor: pointer;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .career-page .job-openings-section .list-group-item {
-      padding: 1rem !important; /* Adjust padding for smaller screens */
-    }
-  }
-  
+}
