@@ -24,6 +24,7 @@ const Contact = () => {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submissionMessage, setSubmissionMessage] = useState('');
 
   // Validate Form Fields
   const validate = () => {
@@ -68,10 +69,19 @@ const Contact = () => {
       })
       .then(response => {
         console.log('Form submitted successfully:', response);
-        setIsSubmitted(true);
+        setSubmissionMessage('Contact Details submitted successfully!');
+        setFormFields({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+        setIsSubmitted(false);
       })
       .catch(error => {
         console.error('Form submission error:', error);
+        setSubmissionMessage('An error occurred during submission. Please try again.');
+        setIsSubmitted(false);
       });
     }
   };
@@ -121,9 +131,10 @@ const Contact = () => {
       
       </div>
 
-      {/* Success Message */}
-      {isSubmitted && <div className="alert alert-success" role="alert">
-        Contact Details submitted successfully!
+    
+      {/* Submission Message */}
+      {submissionMessage && <div className={`alert ${submissionMessage.includes('successfully') ? 'alert-success' : 'alert-danger'}`} role="alert">
+        {submissionMessage}
       </div>}
       
       {/* Message Form Section */}
@@ -147,7 +158,7 @@ const Contact = () => {
             <textarea name="message" placeholder="Message" value={formFields.message} onChange={handleInputChange} required></textarea>
             {errors.message && <p className="text-danger">{errors.message}</p>}
           </div>
-          <button type="submit" className="submit-btn">Submit</button>
+          <button type="submit" className="submit-btn" disabled={isSubmitted}>Submit</button>
         </form>
       </div>
     </motion.div>
