@@ -104,12 +104,28 @@ const Careers = () => {
 
 
   const handleApplyClick = (jobId) => {
-    setSelectedJobId(prevSelectedJobId => (
-      prevSelectedJobId === jobId ? null : jobId
-    ));
-    // Disable the apply button for this job
-  setIsApplyDisabled(prevState => ({...prevState, [jobId]: true}));
-  };
+  
+    // Check if the user is selecting or deselecting the job
+  if (selectedJobId === jobId) {
+    // Deselecting the job. Enable its Apply button and clear the selection
+    setIsApplyDisabled(prevState => ({ ...prevState, [jobId]: false }));
+    setSelectedJobId(null);
+  } else {
+    // Selecting a new job. First, ensure all other buttons are enabled, then disable the current job's button
+    const newIsApplyDisabled = Object.keys(isApplyDisabled).reduce((acc, curr) => {
+      acc[curr] = false; // Enable all buttons
+      return acc;
+    }, {});
+
+    // Now, disable the button for the newly selected job
+    newIsApplyDisabled[jobId] = true;
+
+    // Update state
+    setIsApplyDisabled(newIsApplyDisabled);
+    setSelectedJobId(jobId);
+
+     }
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -162,7 +178,7 @@ const Careers = () => {
       setIsSubmitDisabled(false); // Re-enable the submit button
       setIsApplyDisabled(prevState => ({...prevState, [selectedJobId]: false})); // Re-enable the apply button for this job
       setValidationMessage(''); // Optional: Clear the validation message
-    }, 3000);
+    }, 2000);
   
     } catch (error) {
       console.error('Form submission error:', error);
