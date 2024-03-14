@@ -1,6 +1,7 @@
 // Contact.jsx
 import React, {useState} from 'react';
 import { motion } from 'framer-motion';
+import axios from 'axios'; // Import Axios
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Contact.css';
 import phoneIcon from '../../images/phone.png';
@@ -47,17 +48,43 @@ const Contact = () => {
     setFormFields({ ...formFields, [name]: value });
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if(validate()){
+
+  //     setIsSubmitted(true);
+  //     // Here you can also integrate any API call to submit the form data
+  //   }
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if(validate()){
-      setIsSubmitted(true);
-      // Here you can also integrate any API call to submit the form data
+      // Prepare form data for submission
+      const formData = new FormData();
+      formData.append('form-name', 'contact');
+      Object.keys(formFields).forEach(key => {
+        formData.append(key, formFields[key]);
+      });
+
+      // Use Axios to submit the form data
+      axios({
+        method: 'post',
+        url: '/', // Your form's Netlify action URL; adjust if necessary
+        data: formData,
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
+      .then(response => {
+        console.log('Form submitted successfully:', response);
+        setIsSubmitted(true);
+      })
+      .catch(error => {
+        console.error('Form submission error:', error);
+      });
     }
   };
+
   
-
-
-
   return (
     <motion.div
       className="contact-container"
