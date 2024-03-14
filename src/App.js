@@ -15,7 +15,7 @@ function App() {
 
   const [footerHeight, setFooterHeight] = useState(0);
 
-  
+
 
   useEffect(() => {
     // Function to calculate the footer height
@@ -43,15 +43,15 @@ function App() {
           <div className="content-area"> {/* This is where your route-handled components will be rendered */}
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<About />} />
+              <Route path="/about" element={<About />}/>
               <Route path="/services" element={<Services />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </div>
           <Footer/>
-          {/* Chatbot Component Added Here */}
-        <Chatbot footerHeight={footerHeight} />
+           {/* Chatbot Component Added Here */}
+           <Chatbot/>
         </div>
       </Router>
     );

@@ -2,6 +2,7 @@ import React from 'react';
 import './Footer.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+
 const Footer = () => {
 
  
@@ -39,7 +40,7 @@ const Footer = () => {
         </a>
       </div>
 
-     
+    
       
       {/* Footer Bottom */}
       <div className="text-center p-3" style={{ backgroundColor: 'rgb(0, 161, 224)', color: 'white' }}>

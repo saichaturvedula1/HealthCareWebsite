@@ -34,7 +34,7 @@
   width: 100%; 
   max-height: 90%; 
   z-index: 1000;
-  transition: all 0.3s;
+  transition: all 0.3s ease-in-out;
 }
 
 .message-list {
@@ -101,39 +101,37 @@
 
 .chat-interface {
   width: 100%;
-  height: auto; /* Height is auto to accommodate content */
-  max-height: calc(100vh - 100px); /* Ensures the chat doesn't exceed the viewport height */
+  height: auto;
+  max-height: calc(100vh - 100px);
   background-color: #ffffff;
-  border-radius: 18px; /* Consistent border-radius */
+  border-radius: 18px; /* This applies to all corners, we'll need to change that */
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
+  padding: 0; /* Ensure no padding is affecting the width */
 }
 
 .chat-header {
-  /* background-color: #007bff;
+  background-color: #007bff;
   color: white;
   padding: 12px 15px; 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top-left-radius: 18px; 
-  border-top-right-radius: 18px; 
-  font-size: 18px;  */
-
-    background-color: #007bff;
-    color: white;
-    padding: 0.75rem 1rem; /* Consistent padding */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top-left-radius: 18px;
-    border-top-right-radius: 18px;
-    font-size: 1rem;
-    position: relative; /* Relative position without offset */
+  font-size: 18px;
+  width: 100%; /* Adjust width for padding, assuming 15px padding on each side */
 }
+
+/* Apply border-radius to individual corners */
+.chat-interface {
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  border-bottom-left-radius: 0; /* No border-radius on bottom corners */
+  border-bottom-right-radius: 0; /* No border-radius on bottom corners */
+}
+
 
 .close-icon {
   cursor: pointer;
@@ -184,3 +182,10 @@
 
 }
 
+
+
+/* Additional styles to ensure the text "Chat with us" is aligned */
+.chat-header span {
+  padding-left: 18px; /* Adjust this value to align the text with the left edge */
+  flex-grow: 1; /* Allows the text to take up the available space */
+}
