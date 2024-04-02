@@ -27,7 +27,6 @@ import secured from '../../images/insurance-images/secured.png';
 import superior from '../../images/insurance-images/superior.png';
 import texans from '../../images/insurance-images/texans.png';
 import tricare from '../../images/insurance-images/tricare.png';
-import va from '../../images/insurance-images/va.png';
 import wellcare from '../../images/insurance-images/wellcare.png';
 import wellmed from '../../images/insurance-images/wellmed.png';
 import workerscomp from '../../images/insurance-images/workerscomp.png';
