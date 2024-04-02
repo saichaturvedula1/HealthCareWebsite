@@ -57,3 +57,12 @@ html, body {
     }
 }
 
+.navbar-text{
+    color: white;
+}
+
+.navbar-text a{
+    color: white;
+}
+
+

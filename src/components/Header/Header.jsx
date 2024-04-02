@@ -5,7 +5,7 @@ import './Header.css';
 
 const Header = () => {
   const headerText = "Jcare Home Health Agency";
-
+  const phoneNumber = "972-264-2737";
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
@@ -35,6 +35,9 @@ const Header = () => {
               <Link className="nav-link" to="/contact">Contact</Link>
             </li>
           </ul>
+          <div className="navbar-text">
+            Call Us: <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
+          </div>
         </div>
       </div>
     </nav>

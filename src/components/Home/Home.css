@@ -8,8 +8,39 @@
   background-color: #282c34;
   color: white;
   padding: 20px;
-  font-size: calc(10px + 2vmin);
+  font-size: 20px !important;
+  padding-bottom: 20px;
+  position: relative;
 }
+
+/* .Home-header h1,
+.Home-header p {
+  margin: 0;
+  padding: 10px;
+  font-size: 16px !important;
+} */
+
+/* 
+.Home-header h1 {
+  background-color: #ffcccc;
+}
+
+.Home-header .para-1 {
+  background-color: #ccffcc; 
+}
+
+.Home-header .para-2 {
+  background-color: #ccccff; 
+}
+
+.Home-header .para-3 {
+  background-color: #ffffcc; 
+}
+
+.Home-header .para-4 {
+  background-color: #ffccff; 
+} */
+
 
 .video-container video {
   max-height: 800px;
@@ -34,6 +65,24 @@
 .insurance-card .card-title {
   color: #17a2b8; /* Bootstrap info color for a fresh look */
   font-weight: bold;
+}
+
+/* Container for all insurance logos */
+.insurance-logos-container {
+  display: flex; /* Use flexbox to layout logos */
+  flex-wrap: wrap; /* Wrap items to next line if needed */
+  justify-content: center; /* Center logos horizontally */
+  align-items: center; /* Align logos vertically */
+  gap: 20px; /* Spacing between logos */
+  padding: 20px; /* Padding around the container */
+  background-color: #fff; /* White background, adjust as needed */
+}
+
+/* Individual logo styling */
+.insurance-logo {
+  max-width: 100px; /* Maximum width for logos, adjust as needed */
+  height: auto; /* Height is automatic to maintain aspect ratio */
+  object-fit: contain; /* Ensures image is scaled properly within bounds */
 }
 
 .insurance-card:hover {

@@ -47,23 +47,23 @@ const About = () => {
           {/* <div className="values-image">
             <img src={valuesImg} alt="Doctor" />
           </div> */}
-          <Fade direction="up" triggerOnce delay={timer}>
+          <Fade direction="left" triggerOnce delay={timer}>
           <div className="values-content">
             <h2>Our Values</h2>
             <div className="value-card">
               <FontAwesomeIcon icon={faEye} size="2x"/>
               <h3>Honesty</h3>
-              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+              <p>At Jcare, we uphold the utmost honesty in all our dealings. We believe in transparent communication with our patients, ensuring they fully understand their medical conditions, treatment options, and associated costs.</p>
             </div>
             <div className="value-card">
               <FontAwesomeIcon icon={faMedal} size="2x"/>
               <h3>Highest Quality</h3>
-              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+              <p>Quality is the cornerstone of Jcare. We are dedicated to delivering the highest standard of care to every patient we serve. From our medical professionals to our support staff, we are committed to excellence in everything we do.</p>
             </div>
             <div className="value-card">
               <FontAwesomeIcon icon={faHandshake} size="2x"/>
               <h3>Responsibility</h3>
-              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+              <p>We understand the immense responsibility entrusted to us by our patients and the community. We prioritize patient safety, confidentiality, and well-being above all else. Our team of healthcare professionals adheres to strict ethical standards and follows best practices to provide comprehensive and compassionate care. </p>
             </div>
           </div>
           </Fade>
