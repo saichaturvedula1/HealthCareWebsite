@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import './Home.css';
 import welcomevideo from '../../video/Welcome_video.mp4';
-// Importing components from react-awesome-reveal
 import { Fade, Slide, Zoom } from 'react-awesome-reveal';
 
 import aarpLogo from '../../images/insurance-images/aarp.png';
@@ -81,16 +80,15 @@ const HomePage = () => {
     }
   }, []); // Empty dependency array means this effect runs once after the initial render
 
-
   return (
     <div className="Home">
       <header className="Home-header mb-4">
         <Fade duration={1500} cascade={true}>
           <h1>Welcome to JCare Home Health. A Homecare solution in DFW area</h1>
-          <p>We are a licensed provider offering wide range of home health care services in Dallas/Fort Worth area since 2004.</p>
-          <p>Our team of experienced healthcare professionals provide personalized care plan to homebound patients.</p>
+          <p>We are a licensed provider offering a wide range of home health care services in the Dallas/Fort Worth area since 2004.</p>
+          <p>Our team of experienced healthcare professionals provides personalized care plans to homebound patients.</p>
           <p>Our licensed medical professionals provide services by coordinating with your physician.</p>
-          <p>We are committed to help you design the perfect medical care plan for your unique needs and get faster recovery to get back to your healthier life.</p>
+          <p>We are committed to helping you design the perfect medical care plan for your unique needs and achieve faster recovery to get back to your healthier life.</p>
         </Fade>
       </header>
       <div className="video-container">
@@ -103,20 +101,20 @@ const HomePage = () => {
       </div>
       <div className="container mt-5">
         <Slide direction="up" triggerOnce>
-          <h2>Insurance Types We Offer</h2>
+          <h2>Insurance Types We Accept</h2>
         </Slide>
-        <div className="row insurance-logos-container">
-          {insurancesAccepted.map((insurance) => (
-            <div key={insurance.id} className="col-md-4 mb-4">
-              <Fade direction="left" duration={1000} delay={100 * insurance.id}>
-                <div className="card insurance-card">
-                  <div className="card-body">
-                  <img src={insurance.logo} alt="Insurance Logo" className="insurance-logo"/>
-                  </div>
-                </div>
-              </Fade>
-            </div>
-          ))}
+        <div className="wrapper">
+          <ul>
+            {insurancesAccepted.map((insurance) => (
+              <li key={insurance.id}>
+                <Fade direction="left" duration={1000} delay={100 * insurance.id}>
+                  <figure>
+                    <img src={insurance.logo} alt="Insurance Logo" />
+                  </figure>
+                </Fade>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
