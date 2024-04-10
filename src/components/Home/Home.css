@@ -1,86 +1,103 @@
 /* Home.css */
 .Home {
-  text-align: center;
-  margin:10px;
-}
-
-.Home-header {
-  background-color: #282c34;
-  color: white;
-  padding: 20px;
-  font-size: 20px !important;
-  padding-bottom: 20px;
-  position: relative;
-}
-
-/* .Home-header h1,
-.Home-header p {
-  margin: 0;
-  padding: 10px;
-  font-size: 16px !important;
-} */
-
-/* 
-.Home-header h1 {
-  background-color: #ffcccc;
-}
-
-.Home-header .para-1 {
-  background-color: #ccffcc; 
-}
-
-.Home-header .para-2 {
-  background-color: #ccccff; 
-}
-
-.Home-header .para-3 {
-  background-color: #ffffcc; 
-}
-
-.Home-header .para-4 {
-  background-color: #ffccff; 
-} */
-
-
-.video-container video {
-  max-height: 800px;
-}
-
-
-
-
-
-/* Responsive video and cards */
-@media (max-width: 768px) {
-  .video-container video {
-    max-height: 200px;
+    text-align: center;
+    margin:10px;
   }
-}
-
-@media only screen and (max-device-width: 812px) { /* Adjust width as needed */
-  .video-container video {
-    width: 100%; /* Adjust as necessary */
-    height: auto; /* Adjust as necessary */
+/* Styling for the image container */
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Adjust height as needed */
   }
-}
 
+ 
+  
+  /* Styling for the background image */
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  /* Styling for the content box */
+  .content-box {
+    position: absolute;
+    top: 50%;
+    left: 2%; /* Adjust left position as needed */
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 1);
+    padding: 20px;
+    border-radius:10px;
+    width: 50%; /* Set width to 40% */
+  }
+  
+  /* Styling for the content inside the content box */
+  .content-box h1 {
+    margin-bottom: 10px;
+  }
+  
+  .content-box p {
+    margin: 0 0 10px;
+  }
+  
+  .content-box button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  /* Styling for the container */
+  .container {
+    margin-top: 20px;
+  }
+  
+  /* Styling for the header */
+  .container h2 {
+    margin-bottom: 20px;
+  }
 
-.wrapper {
-  overflow-x: auto; /* Enable horizontal scrolling if the list exceeds container width */
-}
-
-.wrapper ul {
-  padding: 0; /* Remove default padding */
-  list-style: none; /* Remove bullet points */
-  margin: 0; /* Remove default margin */
-}
-
-.wrapper li {
-  display: inline-block; /* Display list items inline */
-  margin-right: 10px; /* Add some spacing between list items */
-}
-
-.wrapper img {
-  width: 200px; /* Adjust as necessary */
-  height: auto; /* Maintain aspect ratio */
-}
+  .wrapper {
+    overflow-x: hidden; /* Change to hidden to hide the overflow */
+    width: 100%; /* Change to 100% to fit the container */
+    white-space: nowrap;
+    display: inline-block; /* Change to inline-block */
+  }
+  
+  .insurance-list {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none; /* Remove list dots */
+    animation: scroll 30s linear infinite;
+    width: max-content;
+  }
+  
+  .insurance-list li {
+    margin-right: 20px; /* Adjust as needed */
+  }
+  
+  .insurance-list li:last-child {
+    margin-right: 0;
+  }
+  
+  .insurance-list img {
+    max-width: 120px; /* Limit the maximum width */
+    max-height: 100%; /* Maintain aspect ratio */
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateX(0%);
+    }
+   100% {
+      transform: translateX(calc(-100% - 20px)); /* Adjusted to move one image completely off-screen including margin */
+    }
+  }

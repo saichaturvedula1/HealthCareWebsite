@@ -95,6 +95,37 @@ const Contact = () => {
       variants={containerVariants}
       transition={{ ease: "easeOut", duration: 0.5 }}
     >
+
+       {/* Submission Message */}
+       {submissionMessage && <div className={`alert ${submissionMessage.includes('successfully') ? 'alert-success' : 'alert-danger'}`} role="alert">
+        {submissionMessage}
+      </div>}
+      
+      {/* Message Form Section */}
+      <div className="message-form p-3 p-md-5">
+        <form name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit}>
+          {/* Honeypot field for spam filtering - should be hidden and left empty by humans */}
+          <input type="hidden" name="bot-field" />
+          {/* Hidden input to link the form with Netlify configuration */}
+          <input type="hidden" name="form-name" value="contact" />
+          <div className="form-group">
+            <input type="text" name="name" placeholder="Patient Name" value={formFields.name} onChange={handleInputChange} required />
+            {errors.name && <p className="text-danger">{errors.name}</p>}
+            <input type="email" name="email" placeholder="Email Address" value={formFields.email} onChange={handleInputChange} required />
+            {errors.email && <p className="text-danger">{errors.email}</p>}
+          </div>
+          <div className="form-group">
+            <input type="text" name="subject" placeholder="Subject" value={formFields.subject} onChange={handleInputChange} required />
+            {errors.subject && <p className="text-danger">{errors.subject}</p>}
+          </div>
+          <div className="form-group">
+            <textarea name="message" placeholder="What would you like to discuss ?" value={formFields.message} onChange={handleInputChange} required></textarea>
+            {errors.message && <p className="text-danger">{errors.message}</p>}
+          </div>
+          <button type="submit" className="submit-btn" disabled={isSubmitted}>Submit</button>
+        </form>
+      </div>
+
       {/* Contact Info Section */}
       <div className="contact-info d-flex flex-wrap justify-content-around">
         {/* Phone Info */}
@@ -128,38 +159,6 @@ const Contact = () => {
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade">
       </iframe>
-      
-      </div>
-
-    
-      {/* Submission Message */}
-      {submissionMessage && <div className={`alert ${submissionMessage.includes('successfully') ? 'alert-success' : 'alert-danger'}`} role="alert">
-        {submissionMessage}
-      </div>}
-      
-      {/* Message Form Section */}
-      <div className="message-form p-3 p-md-5">
-        <form name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit}>
-          {/* Honeypot field for spam filtering - should be hidden and left empty by humans */}
-          <input type="hidden" name="bot-field" />
-          {/* Hidden input to link the form with Netlify configuration */}
-          <input type="hidden" name="form-name" value="contact" />
-          <div className="form-group">
-            <input type="text" name="name" placeholder="Name" value={formFields.name} onChange={handleInputChange} required />
-            {errors.name && <p className="text-danger">{errors.name}</p>}
-            <input type="email" name="email" placeholder="Email Address" value={formFields.email} onChange={handleInputChange} required />
-            {errors.email && <p className="text-danger">{errors.email}</p>}
-          </div>
-          <div className="form-group">
-            <input type="text" name="subject" placeholder="Subject" value={formFields.subject} onChange={handleInputChange} required />
-            {errors.subject && <p className="text-danger">{errors.subject}</p>}
-          </div>
-          <div className="form-group">
-            <textarea name="message" placeholder="Message" value={formFields.message} onChange={handleInputChange} required></textarea>
-            {errors.message && <p className="text-danger">{errors.message}</p>}
-          </div>
-          <button type="submit" className="submit-btn" disabled={isSubmitted}>Submit</button>
-        </form>
       </div>
     </motion.div>
   );

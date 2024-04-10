@@ -1,0 +1,104 @@
+/* Home.css */
+.Home {
+  text-align: center;
+  margin:10px;
+}
+
+.Home-header {
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  font-size: 20px !important;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+/* .Home-header h1,
+.Home-header p {
+  margin: 0;
+  padding: 10px;
+  font-size: 16px !important;
+} */
+
+/* 
+.Home-header h1 {
+  background-color: #ffcccc;
+}
+
+.Home-header .para-1 {
+  background-color: #ccffcc; 
+}
+
+.Home-header .para-2 {
+  background-color: #ccccff; 
+}
+
+.Home-header .para-3 {
+  background-color: #ffffcc; 
+}
+
+.Home-header .para-4 {
+  background-color: #ffccff; 
+} */
+
+
+.video-container video {
+  max-height: 800px;
+}
+
+
+
+
+
+/* Responsive video and cards */
+@media (max-width: 768px) {
+  .video-container video {
+    max-height: 200px;
+  }
+}
+
+@media only screen and (max-device-width: 812px) { /* Adjust width as needed */
+  .video-container video {
+    width: 100%; /* Adjust as necessary */
+    height: auto; /* Adjust as necessary */
+  }
+}
+
+
+.wrapper {
+  overflow-x: hidden; /* Change to hidden to hide the overflow */
+  width: 100%; /* Change to 100% to fit the container */
+  white-space: nowrap;
+  display: inline-block; /* Change to inline-block */
+}
+
+.insurance-list {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none; /* Remove list dots */
+  animation: scroll 30s linear infinite;
+  width: max-content;
+}
+
+.insurance-list li {
+  margin-right: 20px; /* Adjust as needed */
+}
+
+.insurance-list li:last-child {
+  margin-right: 0;
+}
+
+.insurance-list img {
+  max-width: 120px; /* Limit the maximum width */
+  max-height: 100%; /* Maintain aspect ratio */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+ 100% {
+    transform: translateX(calc(-100% - 20px)); /* Adjusted to move one image completely off-screen including margin */
+  }
+}
