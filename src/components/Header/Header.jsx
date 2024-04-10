@@ -13,6 +13,9 @@ const Header = () => {
           <img src={logoImage} alt="Avatar Healthcare Logo" style={{ height: '80px'}} />
         {/* </Link> */}
         <div className="headerText">{headerText}</div>
+        <div className="navbar-text">
+            Contact A Nurse :<a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
+          </div>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -35,9 +38,6 @@ const Header = () => {
               <Link className="nav-link" to="/contact">Contact</Link>
             </li>
           </ul>
-          <div className="navbar-text">
-            Call Us: <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
-          </div>
         </div>
       </div>
     </nav>
