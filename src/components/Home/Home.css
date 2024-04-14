@@ -3,49 +3,47 @@
     text-align: center;
     margin:10px;
   }
-/* Styling for the image container */
-.image-container {
+  
+  .video-container {
     position: relative;
     width: 100%;
-    height: 400px; /* Adjust height as needed */
-  }
-
- 
-  
-  /* Styling for the background image */
-  .background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    height: 720px; /* Adjust height as needed */
+    overflow: hidden;
   }
   
-  /* Styling for the content box */
-  .content-box {
+  .background-video {
     position: absolute;
     top: 50%;
-    left: 2%; /* Adjust left position as needed */
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 1);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+  }
+  
+  .content-box-transparent {
+    position: absolute;
+    top: 40%;
+    left: calc(80% + 50px); /* Move 20px to the right of the center */
+    transform: translate(-50%, -50%);
     padding: 20px;
-    border-radius:10px;
-    width: 50%; /* Set width to 40% */
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.75); /* Transparent background */
+    width: 90%; /* Set width to 90% for smaller screens */
+    max-width: 400px; /* Limit maximum width */
   }
   
   /* Styling for the content inside the content box */
-  .content-box h1 {
+  .content-box-transparent h1 {
     margin-bottom: 10px;
   }
   
-  .content-box p {
+  .content-box-transparent p {
     margin: 0 0 10px;
   }
   
-  .content-box button {
+  .content-box-transparent button {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -102,24 +100,14 @@
     }
   }
 
-
-  /* Media query for smaller screens */
+/* Media query for smaller screens */
 @media screen and (max-width: 768px) {
-    .content-box {
-        padding: 15px; /* Adjust padding */
-        width: 95%; /* Set width to 95% for smaller screens */
-        max-width: none; /* Remove maximum width */
+    .content-box-transparent {
+      width: 90%; /* Set width to 90% for smaller screens */
+      max-width: 90%; /* Limit maximum width */
+      left: 50%; /* Center horizontally */
+      transform: translate(-50%, -50%);
+      padding: 15px; /* Adjust padding */
     }
-
-    .content-box h1 {
-        font-size: 1.3em; /* Adjust font size */
-    }
-
-    .content-box p {
-        font-size: 0.9em; /* Adjust font size */
-    }
-
-    .content-box button {
-        font-size: 0.9em; /* Adjust font size */
-    }
-}
+  }
+ 

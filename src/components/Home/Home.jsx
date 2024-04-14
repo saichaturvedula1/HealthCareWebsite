@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './Home.css';
 import { Fade, Slide} from 'react-awesome-reveal';
 import { useNavigate } from 'react-router-dom';
-import image1 from '../../images/image-1.png';
-import image2 from '../../images/image-2.png';
 import aarpLogo from '../../images/insurance-images/aarp.png';
 import aetnaLogo from '../../images/insurance-images/aetna.png';
 import Amerigroup from '../../images/insurance-images/Amerigroup.png';
@@ -31,8 +29,7 @@ import wellcare from '../../images/insurance-images/wellcare.png';
 import wellmed from '../../images/insurance-images/wellmed.png';
 import workerscomp from '../../images/insurance-images/workerscomp.png';
 import vains from '../../images/insurance-images/va.png';
-
-const insuranceLogos = [image1, image2];
+import introvideo from '../../video/intro_video.mp4';
 const HomePage = () => {
     const insurancesAccepted = [
         { id: 1, logo: aarpLogo },
@@ -64,33 +61,28 @@ const HomePage = () => {
         { id: 27, logo: vains}
       ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  
   const navigate = useNavigate(); // Initialize useNavigate hook
-    useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % insuranceLogos.length);
-    }, 2000); // Change image every 2 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
+ 
   const handleButtonClick = () => {
     navigate('/contact'); // Navigate to the contact page
   };
 
   return (
     <div className="Home">
-      <div className="image-container">
-        <div className="background-image" style={{ backgroundImage: `url(${insuranceLogos[currentIndex]})` }}></div>
-        <div className="content-box">
-        <Fade duration={1500} cascade={true}>
-          <h1>Welcome to JCare Home Health.</h1>
-          <p>We are a licensed provider offering a wide range of home health care services in the Dallas/Fort Worth area since 2004.</p>
-          <p>Our team of experienced healthcare professionals provides personalized care plans to homebound patients.</p>
-        </Fade>
-        <button onClick={handleButtonClick}>Talk With a Nurse</button>
-      </div>
-      </div>
+      <div className="video-container">
+      <video className="background-video" autoPlay muted loop>
+      <source src={introvideo} type="video/mp4" />
+     </video>
+     <div className="content-box-transparent">
+    <Fade duration={1500} cascade={true}>
+      <h1>Welcome to JCare Home Health.</h1>
+      <p>We are a licensed provider offering a wide range of home health care services in the Dallas/Fort Worth area since 2004.</p>
+      <p>Our team of experienced healthcare professionals provides personalized care plans to homebound patients.</p>
+    </Fade>
+    <button onClick={handleButtonClick}>Talk With a Nurse</button>
+  </div>
+    </div>
       
       <div className="container mt-5">
         <Slide direction="center" triggerOnce>
