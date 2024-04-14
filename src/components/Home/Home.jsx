@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Home.css';
 import { Fade, Slide} from 'react-awesome-reveal';
 import { useNavigate } from 'react-router-dom';
