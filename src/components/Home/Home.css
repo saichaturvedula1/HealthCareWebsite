@@ -101,3 +101,25 @@
       transform: translateX(calc(-100% - 20px)); /* Adjusted to move one image completely off-screen including margin */
     }
   }
+
+
+  /* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .content-box {
+        padding: 15px; /* Adjust padding */
+        width: 95%; /* Set width to 95% for smaller screens */
+        max-width: none; /* Remove maximum width */
+    }
+
+    .content-box h1 {
+        font-size: 1.3em; /* Adjust font size */
+    }
+
+    .content-box p {
+        font-size: 0.9em; /* Adjust font size */
+    }
+
+    .content-box button {
+        font-size: 0.9em; /* Adjust font size */
+    }
+}
