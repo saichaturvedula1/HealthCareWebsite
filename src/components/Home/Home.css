@@ -3,7 +3,7 @@
     text-align: center;
     margin:10px;
   }
-  
+
   .video-container {
     position: relative;
     width: 100%;
@@ -111,3 +111,54 @@
     }
   }
  
+
+  .service-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  
+  .service-icon {
+  width: 150px; /* Fixed width for consistent size */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center align both icon and text */
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  }
+  
+  .service-icon img {
+    width: 90%; /* Adjust size as needed */
+    height: 71px; /* Adjust size as needed */
+   margin-bottom: 5px;
+  }
+  
+  .service-icon span {
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Show ellipsis for overflow text */
+  }
+
+ /* For mobile */
+@media (max-width: 768px) {
+    .service-icons {
+      justify-content: center;
+    }
+  
+    .service-icon {
+      flex-basis: calc(50% - 20px); /* Adjust width for two icons in a row */
+      margin: 20px; /* Add spacing between icons */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .service-icon {
+      flex-basis: calc(100% - 20px); /* Adjust width for one icon in a row */
+    }
+  }

@@ -30,6 +30,14 @@ import wellmed from '../../images/insurance-images/wellmed.png';
 import workerscomp from '../../images/insurance-images/workerscomp.png';
 import vains from '../../images/insurance-images/va.png';
 import introvideo from '../../video/intro_video.mp4';
+
+import skilledNursing from '../../images/skilled_nursing.png';
+import physicalTherapy from '../../images/physical_therapy.png';
+import occupationalTherapy from '../../images/occupational_therapy.png';
+import speechTherapy from '../../images/speech_therapy.png';
+import homeHealthAide from '../../images/home_health_aide.png';
+import socialWorker from '../../images/social_worker.png';
+
 const HomePage = () => {
     const insurancesAccepted = [
         { id: 1, logo: aarpLogo },
@@ -61,6 +69,14 @@ const HomePage = () => {
         { id: 27, logo: vains}
       ];
 
+      const services = [
+        { id: 1, name: 'Skilled Nursing', icon: skilledNursing, backgroundColor: '#00ccff' },
+        { id: 2, name: 'Physical Therapy', icon: physicalTherapy, backgroundColor: '#00ccff' },
+        { id: 3, name: 'Occupational Therapy', icon: occupationalTherapy, backgroundColor: '#00ccff' },
+        { id: 4, name: 'Speech Therapy', icon: speechTherapy, backgroundColor: '#00ccff' },
+        { id: 5, name: 'Home Health Aide', icon: homeHealthAide, backgroundColor: '#00ccff' },
+        { id: 6, name: 'Social Worker', icon: socialWorker, backgroundColor: '#00ccff' }
+      ];
   
   const navigate = useNavigate(); // Initialize useNavigate hook
  
@@ -104,6 +120,21 @@ const HomePage = () => {
         </div>
 
       </div>
+      
+      <h2 style={{ textAlign: "center", fontWeight: "bold", marginBottom: "20px" }}>Services</h2>
+      
+      <div className="service-icons">
+      
+      <Slide direction="center" triggerOnce>
+          {services.map((service) => (
+            <div key={service.id} className="service-icon" style={{ backgroundColor: service.backgroundColor }}>
+              <img src={service.icon} alt="Service Icon" />
+              <span style={{color:"white"}}>{service.name}</span>
+            </div>
+          ))}
+          </Slide>
+        </div>
+
     </div>
   );
 };
