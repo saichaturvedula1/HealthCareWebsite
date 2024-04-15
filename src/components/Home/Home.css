@@ -145,18 +145,20 @@
     text-overflow: ellipsis; /* Show ellipsis for overflow text */
   }
 
- /* For mobile */
+
+/* For mobile */
 @media (max-width: 768px) {
-    .service-icons {
-      justify-content: center;
-    }
-  
-    .service-icon {
-      flex-basis: calc(50% - 20px); /* Adjust width for two icons in a row */
-      margin: 20px; /* Add spacing between icons */
-    }
+  .service-icons {
+    justify-content: center;
+    flex-wrap: wrap; /* Allow icons to wrap to the next line */
   }
-  
+
+  .service-icon {
+    flex-basis: calc(50% - 20px); /* Adjust width for two icons in a row */
+    margin: 10px; /* Add spacing between icons */
+  }
+}
+
   @media (max-width: 480px) {
     .service-icon {
       flex-basis: calc(100% - 20px); /* Adjust width for one icon in a row */
