@@ -14,6 +14,13 @@ html, body {
     margin-right: auto; /* Pushes the navbar items to the right */
 }
 
+.userQuote{
+    color: #ffffff !important;
+    font-size: 30px; /* Adjusted font size down from 50px */
+    padding-left: 1rem; /* Adjust padding if needed */
+    margin-right: auto; /* Pushes the navbar items to the right */
+}
+
 /* General navbar styling */
 .navbar {
     background-color: rgb(0, 161, 224);
@@ -57,17 +64,5 @@ html, body {
     }
 }
 
-.navbar-text{
-    color: white;
-    position: relative;
-    padding: 10px 25px;
-    margin: 10px 25px;
-}
-
-.navbar-text a{
-    color: white;
-    position: relative;
-    margin:10px;
-}
 
 

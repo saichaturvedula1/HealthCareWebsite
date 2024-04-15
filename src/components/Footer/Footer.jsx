@@ -41,7 +41,16 @@ const Footer = () => {
       </div>
 
     
-      
+      {/* Contact and Fax Numbers */}
+      <div className="row mt-4 contact-information">
+          <div className="col-md-6">
+            <h5 className="bgtxtcolor">Contact Us</h5>
+            <p>Phone: <a href={`tel:${9722642737}`} style={{ color: 'white'}}> {9722642737}</a></p>
+            <p>Fax: <a href={`tel:${9726660507}`} style={{ color: 'white'}}> {9726660507}</a></p>
+          </div>
+        </div>
+
+
       {/* Footer Bottom */}
       <div className="text-center p-3" style={{ backgroundColor: 'rgb(0, 161, 224)', color: 'white' }}>
         © 2024 | Jcare home health agency, Carrollton Texas

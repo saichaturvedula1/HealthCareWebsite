@@ -5,17 +5,13 @@ import './Header.css';
 
 const Header = () => {
   const headerText = "Home Health Services";
-  const phoneNumber = "972-264-2737";
-  const faxNumber = "972-666-0507";
+  const userQuote = "Empowering Health at Your Fingertips";
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
         <img src={logoImage} alt="Avatar Healthcare Logo" style={{ height: '80px'}} />
         <div className="headerText">{headerText}</div>
-        <div className="navbar-text">
-            <span>Contact :<a href={`tel:${phoneNumber}`}>{phoneNumber}</a></span>
-            <span>Fax :<a href={`tel:${faxNumber}`}>{faxNumber}</a></span>
-          </div>
+        <div className="userQuote">{userQuote}</div>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
