@@ -9,7 +9,7 @@ html, body {
 
 .headerText {
     color: #ffffff !important;
-    font-size: 36px; /* Adjusted font size down from 50px */
+    font-size: 32px; /* Adjusted font size down from 50px */
     padding-left: 1rem; /* Adjust padding if needed */
     margin-right: auto; /* Pushes the navbar items to the right */
 }
