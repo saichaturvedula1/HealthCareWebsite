@@ -5,7 +5,8 @@ import { faFacebookF, faTwitter, faInstagram, faLinkedin } from '@fortawesome/fr
 
 const Footer = () => {
 
- 
+ const phoneNum = "972-264-2737";
+ const faxNum = "972-666-0507";
 
   return (
     <footer className="text-center text-lg-start bgtxtcolor">
@@ -45,8 +46,8 @@ const Footer = () => {
       <div className="row mt-4 contact-information">
           <div className="col-md-6">
             <h5 className="bgtxtcolor">Contact Us</h5>
-            <p>Phone: <a href={`tel:${9722642737}`} style={{ color: 'white'}}> {9722642737}</a></p>
-            <p>Fax: <a href={`tel:${9726660507}`} style={{ color: 'white'}}> {9726660507}</a></p>
+            <p>Phone: <a href={`tel:${phoneNum}`} style={{ color: 'white'}}> {phoneNum}</a></p>
+            <p>Fax: <a href={`tel:${faxNum}`} style={{ color: 'white'}}> {faxNum}</a></p>
           </div>
         </div>
 

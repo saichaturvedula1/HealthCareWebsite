@@ -4,71 +4,57 @@ import { Container, Typography, Card, CardContent, TextField, Button, Checkbox, 
 import axios from 'axios';
 import './Careers.css';
 
-
+  
 
 const jobs = [
   {
     "id": "1",
-    "title": "Registered Nurse",
-    "location": "New York, NY",
+    "title": "Home Health Aide",
+    "location": "Carrollton, TX",
     "category": "Nursing",
     "description": "Providing patient care and support."
   },
   {
     "id": "2",
-    "title": "Medical Assistant",
-    "location": "Los Angeles, CA",
+    "title": "RN",
+    "location": "Carrollton, TX",
     "category": "Clinical",
     "description": "Assist in patient assessment and treatment."
   },
   {
     "id": "3",
-    "title": "Healthcare Administrator",
-    "location": "Chicago, IL",
+    "title": "Lvn Physical Therapist",
+    "location": "Carrollton, TX",
     "category": "Administration",
     "description": "Manage healthcare facility operations."
   },
   {
     "id": "4",
-    "title": "Pharmacist",
-    "location": "Houston, TX",
+    "title": "Physical Therapist Assistant",
+    "location": "Carrollton, TX",
     "category": "Pharmacy",
     "description": "Provide and manage patient medication."
   },
   {
     "id": "5",
-    "title": "Physical Therapist",
-    "location": "Philadelphia, PA",
+    "title": "Occupational Therapist",
+    "location": "Carrollton, TX",
     "category": "Rehabilitation",
     "description": "Assist patients in physical recovery."
   },
   {
     "id": "6",
-    "title": "Dental Hygienist",
-    "location": "Phoenix, AZ",
+    "title": "Speech Therapist",
+    "location": "Carrollton, TX",
     "category": "Dental",
     "description": "Perform dental cleanings."
   },
   {
     "id": "7",
-    "title": "Clinical Laboratory Technician",
-    "location": "San Antonio, TX",
+    "title": "Medical Social Worker",
+    "location": "Carrollton, TX",
     "category": "Laboratory",
     "description": "Conduct tests and provide lab results."
-  },
-  {
-    "id": "8",
-    "title": "Radiologic Technologist",
-    "location": "San Diego, CA",
-    "category": "Radiology",
-    "description": "Perform diagnostic imaging examinations."
-  },
-  {
-    "id": "9",
-    "title": "Health Information Technician",
-    "location": "Dallas, TX",
-    "category": "Informatics",
-    "description": "Manage patient health information."
   }
 ]
 
