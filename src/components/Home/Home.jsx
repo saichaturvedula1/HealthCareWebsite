@@ -92,7 +92,7 @@ const HomePage = () => {
      </video>
      <div className="content-box-transparent">
     <Fade duration={1500} cascade={true}>
-      <h1>Welcome to JCare Home Health.</h1>
+      <h1>Welcome to Hearts That Care.</h1>
       <p>We are a licensed provider offering a wide range of home health care services in the Dallas/Fort Worth area since 2004.</p>
       <p>Our team of experienced healthcare professionals provides personalized care plans to homebound patients.</p>
     </Fade>

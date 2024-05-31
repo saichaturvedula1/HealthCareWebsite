@@ -54,7 +54,7 @@ const Footer = () => {
 
       {/* Footer Bottom */}
       <div className="text-center p-3" style={{ backgroundColor: 'rgb(0, 161, 224)', color: 'white' }}>
-        © 2024 | Jcare home health agency, Carrollton Texas
+        © 2024 | Hearts That care, Carrollton Texas
       </div>
     </footer>
   );

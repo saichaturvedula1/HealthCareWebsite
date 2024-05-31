@@ -4,7 +4,7 @@ import logoImage from '../../images/logo.png';
 import './Header.css';
 
 const Header = () => {
-  const headerText = "Home Health Services";
+  const headerText = "Hearts That Care";
   const userQuote = "Empowering Health at Your Fingertips";
   return (
     <nav className="navbar navbar-expand-lg">
